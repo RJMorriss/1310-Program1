@@ -40,3 +40,42 @@ This will represent the Amusement Park itself, all of the parks rides will be st
     - int getSize()
         - Returns the size of rideArr
 
+### Data Class (Ride Class)
+This class will represents the rides, the ride will contain a series of information about themselves describing a variety of attributes
+#### Attributes: 
+* string Name
+* int Capacity
+* int Year of Creation
+* string Classification
+    * The type of Ride of the object (i.e. Thrill, Coaster, Carnival, etc.)
+* Cart* cart
+    * A pointer to a Cart object that represents the Ride Passenger Cart
+
+#### Data Class Functions
+- Ride()
+    - Default Ride contructor, Initializes the Ride object and defaults all attribute values
+- Ride(string, int, int, string, Cart*)
+    - Overloaded Ride constructor, Initializes the Ride object and sets the attribute values based on the parameters
+- ~Ride()
+    - Ride destructor, deletes the Ride's Cart pointer and the Ride itself
+- string getName()
+    - Returns the name of the Ride
+- void setName(string)
+    - Sets the name of the Ride to the parameter
+- int getCap()
+    - Returns the capacity of the Ride
+- void setCap(int)
+    - Sets the capacity of the Ride to the parameter
+- int getYear()
+    - Returns the year of creation of the Ride
+- void setYear(string)
+    - Sets the year of the Ride to the parameter
+- string getClass()
+    - Returns the class of the Ride
+- void setClass(string)
+    - Sets the class of the Ride to the parameter
+- Cart* getCart()
+    - Returns a pointer to the Ride's Cart object
+- void setCart(Cart*)
+    - Set the Ride's Cart to the parameter
+
