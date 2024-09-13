@@ -1,7 +1,32 @@
-# 1310-Program1
+# 1310 Program1: Amusement Park Administraion
 An introductory program into utilizing git and group programming
 
 This program will represent an amusement park, The park will contain a series of attractions with its own unique set of attributes 
+
+## Program Flow
+The program will operate using a user-input navigated menu in the terminal. The user will be propmted with a set of options all with an indicated selector to allow the user to interact with their Park through the terminal input.
+
+## Role Breakdown
+### Navigator-Driver Pair Programming
+Our group has chosen to take a pair programming aproach to this program, we've devided ourselves into two subgroups where each group will tackle two major aspects of the project
+#### Group 1
+**Bryce and Everett**
+Tasks:
+* Program Driver
+    * Driver.cpp
+* Park Class
+    * Park.cpp
+    * Park.h
+
+#### Group 2
+**Lloyd and Robert**
+Tasks:
+* Ride Class
+    * Ride.cpp
+    * Ride.h
+* Cart Class
+    * Cart.cpp
+    * Cart.h
 
 ## Classes
 ### Storage Class (Park Class)
