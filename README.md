@@ -141,7 +141,7 @@ This class will store information about a passenger cart for a specific ride
     * string color
         * Color of the cart
         * default ""
-    * bool* rowOperation
+    * bool* rowOperationArr
         * pointer to boolean area with size equal to the number of rows
         * True/False value for each row
             * True means operational row
@@ -174,7 +174,7 @@ This class will store information about a passenger cart for a specific ride
     - int getRowSize()
         - Returns the amount of seats in each row
     - void setRowSize(int)
-        - Seta the amount of seats in each row
+        - Sets the amount of seats in each row
     - int getRows()
         - Returns the number of rows in the cart
     - void setRows(int) 
@@ -192,5 +192,5 @@ This class will store information about a passenger cart for a specific ride
         - Returns a boolean value for the operational status of the row at a given index
     - void setRowStatus(int, bool)
         - Sets the operation status of a row at a given index to the given value
-    - int getCurrentCapacity(void)
+    - int getCurrentCapacity()
         - Returns the maximum capacity of the Cart based on row size * number of operational rows
