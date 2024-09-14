@@ -1,4 +1,4 @@
-# 1310 Program 1: Amusement Park Administration
+# CSC 1310 Program 1: Amusement Park Administration
 An introductory program into utilizing git and group programming
 
 This program will represent an amusement park, The park will contain a series of attractions, each with its own unique set of attributes 
