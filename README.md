@@ -39,6 +39,9 @@ This will represent the Amusement Park itself, all of the parks rides will be st
     * int size
         * current size of rideArr
         * default 1
+    * int rideCount
+        * Count of rides in the park
+        * default 0
 
 #### Storage Class Functions
 - Private
@@ -70,6 +73,16 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - deletes all Rides in the Ride array, the Ride array, and the park itself
     - int getSize()
         - Returns the size of rideArr
+    - void addRide()
+        - Add a default Ride to the rideArr using the default Ride constructor
+    - void addRide(string, int, int, string, Cart*)
+        - Add a custom ride using the first overloaded Ride constructor
+    - void addRide(string, int, int, string, int, int, bool, string)
+        - Add a custom ride using the secodn overloaded Ride constructor and overloaded Cart constructor
+    - void removeRide(int)
+        - Remove the ride at the specified index in the rideArr
+        - Move all further rides down
+        - Update rideCount
 
 ### Data Class (Ride Class)
 This class will represents a ride, the ride will contain a series of information about themselves describing a variety of attributes
@@ -96,9 +109,11 @@ This class will represents a ride, the ride will contain a series of information
     - Ride()
         - Default Ride constructor
         - Initializes the Ride object and defaults all attribute values
-    - Ride(string, int, int, string, Cart*)
+    - Ride(string, int, string, Cart*)
         - Overloaded Ride constructor
         - Initializes the Ride object and sets the attribute values based on the parameters
+    - Ride(string, int, string, int, int, bool, string)
+        - Second overloaded Ride constructor
     - ~Ride()
         - Ride destructor
         - deletes the Ride's Cart pointer and the Ride itself
@@ -108,16 +123,16 @@ This class will represents a ride, the ride will contain a series of information
         - Sets the name of the Ride to the parameter
     - int getCap()
         - Returns the capacity of the Ride
-    - void setCap(int)
-        - Sets the capacity of the Ride to the parameter
+    - void setCap()
+        - Sets the capacity of the Ride using the Cart getCurrentCapacity() function
     - int getYear()
         - Returns the year of creation of the Ride
-    - void setYear(string)
+    - void setYear(int)
         - Sets the year of the Ride to the parameter
-    - string getClass()
-        - Returns the class of the Ride
-    - void setClass(string)
-        - Sets the class of the Ride to the parameter
+    - string getType()
+        - Returns the type of the Ride
+    - void setType(string)
+        - Sets the type of the Ride to the parameter
     - Cart* getCart()
         - Returns a pointer to the Ride's Cart object
     - void setCart(Cart*)
