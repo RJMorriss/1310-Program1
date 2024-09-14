@@ -1,14 +1,14 @@
-# 1310 Program1: Amusement Park Administraion
+# 1310 Program 1: Amusement Park Administration
 An introductory program into utilizing git and group programming
 
-This program will represent an amusement park, The park will contain a series of attractions with its own unique set of attributes 
+This program will represent an amusement park, The park will contain a series of attractions, each with its own unique set of attributes 
 
 ## Program Flow
-The program will operate using a user-input navigated menu in the terminal. The user will be propmted with a set of options all with an indicated selector to allow the user to interact with their Park through the terminal input.
+The program will operate using a user-input navigated menu in the terminal. The user will be prompted with a set of options all with an indicated selector to allow the user to interact with their Park through the terminal input.
 
 ## Role Breakdown
 ### Navigator-Driver Pair Programming
-Our group has chosen to take a pair programming aproach to this program, we've devided ourselves into two subgroups where each group will tackle two major aspects of the project
+Our group has chosen to take a pair programming approach to this program, we've divided ourselves into two subgroups where each group will tackle two major aspects of the project
 #### Group 1
 **Bryce and Everett**
 Tasks:
@@ -64,7 +64,7 @@ This will represent the Amusement Park itself, all of the parks rides will be st
 - Public
     - Park()
         - Constructor for the Park class
-        - Initilizes the Ride array to a size of 2
+        - Initializes the Ride array to a size of 2
     - ~Park()
         - Destructor for the Park class
         - deletes all Rides in the Ride array, the Ride array, and the park itself
@@ -94,7 +94,7 @@ This class will represents a ride, the ride will contain a series of information
 #### Data Class Functions
 - Public
     - Ride()
-        - Default Ride contructor
+        - Default Ride constructor
         - Initializes the Ride object and defaults all attribute values
     - Ride(string, int, int, string, Cart*)
         - Overloaded Ride constructor
@@ -129,10 +129,10 @@ This class will store information about a passenger cart for a specific ride
 * Private
     * int rowSize
         * Amount of seats in each row
-        * defualt 1
+        * default 1
     * int rows
         * Amount of rows in the cart
-        * defualt 1
+        * default 1
     * bool mountType
         * Stores how the cart is mounted to the Ride
             * True for Over (Cart sits on top of the ride rail)
@@ -158,12 +158,12 @@ This class will store information about a passenger cart for a specific ride
             - if bigger than current rowOperation array 
                 - populates the first "y" elements of the new array with the current array where "y" is the size of the current array
                 - initializes remaining elements to True
-        - Selete current array
+        - Delete current array
         - Set new array to rowOperation attribute
             
 - Public
     - Cart()
-        - Defualt constructor for the Cart object
+        - Default constructor for the Cart object
         - Initializes the Class object and defaults all attribute values
     - Cart(int, int, bool, string)
         - Overloaded constructor for the Cart object
