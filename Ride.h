@@ -8,7 +8,6 @@
 #ifndef RIDE_H
 #define RIDE_H
 
-#include <iostream>
 #include "Cart.h"
 
 class Ride {
