@@ -15,7 +15,7 @@ class Cart {
     private:
         int rowSize;
         int rows;
-        bool mountType;
+        string mountType;
         string color;
         bool* rowOperationArr;
 
@@ -23,22 +23,22 @@ class Cart {
 
     public:
         Cart();
-        Cart(int, int, bool, string);
+        Cart(int, int, string, string);
         ~Cart();
 
         int getRowSize();
         int getRows();
-        bool getType();
+        string getType();
         string getColor();
         bool isRowOperational(int);
         int getCurrentCapacity();
 
         void setRowSize(int);
         void setRows(int);
-        void setType(bool);
+        void setType(string);
         void setColor(string);
         void setRowStatus(int, bool);
-        
+
         void printCart();
 };
 

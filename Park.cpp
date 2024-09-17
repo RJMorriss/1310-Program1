@@ -68,6 +68,21 @@ Park::~Park() {
 }
 
 /**
+ * Access the Ride array to a specified index and returns the pointer element to the user
+ * @param int index - The index of the desired Ride in the Ride array
+ * @return Ride* - A Ride pointer from the Ride array at the specified index
+ */
+Ride* Park::getRide(int index) {
+    return this->rideArr[index];
+}
+
+/**
+ * Accesses the number of Rides in the Park
+ * @return int - Current number of rides in the Ride array
+ */
+int Park::getRideCount() { return this->rideCount; };
+
+/**
  * Accesses the Park's size attribute variable
  * @return int - Size size of the Park's rideArr
  */
@@ -110,7 +125,7 @@ void Park::addRide(string name, int year, string type) {
  * Adds it to the Ride Array
  * Adjusts the rideCount variable
  */
-void Park::addRide(string name, int year, string type, int rowSize, int rows, bool mountType, string color) {
+void Park::addRide(string name, int year, string type, int rowSize, int rows, string mountType, string color) {
     Ride* newRide = new Ride(name, year, type, rowSize, rows, mountType, color);
     if (this->rideCount == this->size) {
         arrSizeUp();
@@ -142,7 +157,7 @@ void Park::removeRide(int index) {
  */
 void Park::printRides() {
     for (int i = 0; i < this->rideCount; i++) {
-        cout << string(25, '*') << "RIDE " << i + 1 << string(25, '*') << endl;
+        cout << string(25, '*') << " RIDE " << i + 1 << " " << string(25, '*') << endl;
         this->rideArr[i]->printRide();
     }
 }

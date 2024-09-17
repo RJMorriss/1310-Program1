@@ -21,7 +21,7 @@ class Ride {
     public:
         Ride();
         Ride(string, int, string);
-        Ride(string, int, string, int, int, bool, string);
+        Ride(string, int, string, int, int, string, string);
         ~Ride();
 
         string getName();

@@ -67,6 +67,8 @@ This will represent the Amusement Park itself, all of the parks rides will be st
     - ~Park()
         - Destructor for the Park class
         - deletes all Rides in the Ride array, the Ride array, and the park itself
+    - Ride* getRide(int)
+        - Returns the Ride pointer at the given index in the Ride array
     - int getSize()
         - Returns the size of rideArr
     - void setSize(int)

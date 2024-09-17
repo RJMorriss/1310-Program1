@@ -23,7 +23,7 @@ Ride::Ride(string name, int year, string type) {
     this->capacity = this->cart->getCurrentCapacity();
 }
 
-Ride::Ride(string name, int year, string type, int rowSize, int rows, bool mountType, string color) {
+Ride::Ride(string name, int year, string type, int rowSize, int rows, string mountType, string color) {
     this->name = name;
     this->year = year;
     this->type = type;

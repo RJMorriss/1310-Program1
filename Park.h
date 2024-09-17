@@ -22,11 +22,13 @@ class Park {
     public:
         Park();
         ~Park();
+        Ride* getRide(int);
+        int getRideCount();
         int getSize();
         void setSize(int);
         void addRide();
         void addRide(string, int, string);
-        void addRide(string, int, string, int, int, bool, string);
+        void addRide(string, int, string, int, int, string, string);
         void removeRide(int);
         void printRides();
 };
