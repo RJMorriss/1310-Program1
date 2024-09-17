@@ -16,7 +16,8 @@ Cart::Cart() {
     this->rows = 1;
     this->mountType = true;
     this->color = "";
-    this->rowOperationArr = new bool[1]{true};
+    this->rowOperationArr = new bool[1];
+    this->rowOperationArr[0] = true;
 }
 
 /**
@@ -133,4 +134,16 @@ void Cart::updateOperationalArr(int newRows) {
         delete [] this->rowOperationArr;
         this->rowOperationArr = newArr;
     }
+}
+
+/** printCart()
+ * prints all information about the cart
+ */
+void Cart::printCart() {
+    cout << "\t\tROW SIZE:\t" << this->getRowSize() << endl;
+    cout << "\t\tROWS:\t\t" << this->getRows() << endl;
+    cout << "\t\tMOUNT TYPE:\t";
+    if (this->getType()) cout << "Bottom Mount" << endl;
+    else cout << "Top Mount" << endl;
+    cout << "\t\tCOLOR:\t\t" << this->getColor() << endl;
 }

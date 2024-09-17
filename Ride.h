@@ -20,7 +20,7 @@ class Ride {
     
     public:
         Ride();
-        Ride(string, int, string, Cart*);
+        Ride(string, int, string);
         Ride(string, int, string, int, int, bool, string);
         ~Ride();
 
@@ -35,6 +35,7 @@ class Ride {
         void setYear(int);
         void setType(string);
         void setCart(Cart*);
+        void printRide();
 };
 
 

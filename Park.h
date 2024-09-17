@@ -25,9 +25,10 @@ class Park {
         int getSize();
         void setSize(int);
         void addRide();
-        void addRide(string, int, string, Cart*);
+        void addRide(string, int, string);
         void addRide(string, int, string, int, int, bool, string);
         void removeRide(int);
+        void printRides();
 };
 
 #endif

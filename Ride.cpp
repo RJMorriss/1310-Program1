@@ -15,11 +15,11 @@ Ride::Ride() {
     this->capacity = this->cart->getCurrentCapacity();
 }
 
-Ride::Ride(string name, int year, string type, Cart* cart) {
+Ride::Ride(string name, int year, string type) {
     this->name = name;
     this->year = year;
     this->type = type;
-    this->cart = cart;
+    this->cart = new Cart();
     this->capacity = this->cart->getCurrentCapacity();
 }
 
@@ -44,3 +44,15 @@ void Ride::setCap() { this->capacity = this->cart->getCurrentCapacity(); };
 void Ride::setYear(int year) { this->year = year; };
 void Ride::setType(string type) { this->type = type; };
 void Ride::setCart(Cart* cart) { this->cart = cart; };
+
+/** printRide()
+ * Prints all information about the ride and it's cart 
+ */
+void Ride::printRide() {
+    cout << "NAME:\t\t" << this->getName() << endl;
+    cout << "YEAR:\t\t" << this->getYear() << endl;
+    cout << "CAPACITY:\t" << this->getCap() << endl;
+    cout << "TYPE:\t\t" << this->getType() << endl;
+    cout << "CART:" << endl;
+    this->cart->printCart();
+}

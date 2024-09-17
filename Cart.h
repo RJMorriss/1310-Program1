@@ -38,6 +38,8 @@ class Cart {
         void setType(bool);
         void setColor(string);
         void setRowStatus(int, bool);
+        
+        void printCart();
 };
 
 #endif

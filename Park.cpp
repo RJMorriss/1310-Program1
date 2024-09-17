@@ -96,8 +96,8 @@ void Park::addRide() {
  * Adds it to the Ride Array
  * Adjusts the rideCount variable
  */
-void Park::addRide(string name, int year, string type, Cart* cart) {
-    Ride* newRide = new Ride(name, year, type, cart);
+void Park::addRide(string name, int year, string type) {
+    Ride* newRide = new Ride(name, year, type);
     if (this->rideCount == this->size) {
         arrSizeUp();
     }
@@ -137,3 +137,12 @@ void Park::removeRide(int index) {
     }
 }
 
+/** printRides()
+ * Prints all information about all rides in the Ride array
+ */
+void Park::printRides() {
+    for (int i = 0; i < this->rideCount; i++) {
+        cout << string(25, '*') << "RIDE " << i + 1 << string(25, '*') << endl;
+        this->rideArr[i]->printRide();
+    }
+}
