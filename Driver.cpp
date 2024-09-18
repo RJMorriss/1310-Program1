@@ -9,15 +9,15 @@ int main()
 {
     int switchChoice;
 
-    cout << "************************************************" << endl;
-    cout << "AMUSEMENT PARK MENU" << endl;
-    cout << "What would you like to do? (Enter 1-5)" << endl;
-    cout << "Option 1: Print Rides" << endl;
-    cout << "Option 2: Delete Rides" << endl;
-    cout << "Option 3: Add Rides" << endl;
-    cout << "Option 4: End Program" << endl;
-
     do{
+        cout << "************************************************" << endl;
+        cout << "AMUSEMENT PARK MENU" << endl;
+        cout << "What would you like to do? (Enter 1-5)" << endl;
+        cout << "Option 1: Print Rides" << endl;
+        cout << "Option 2: Delete Rides" << endl;
+        cout << "Option 3: Add Rides" << endl;
+        cout << "Option 4: End Program" << endl;
+
         switch(switchChoice)
         {
             case 1:
@@ -27,13 +27,25 @@ int main()
                 cin >> sub1Choice;
                 while(sub1Choice<0 || sub1Choice>2)
                 {
-                    cout << "Please Enter a valid Input" << endl;
+                    cout << "Please Enter a Valid Input" << endl;
                     cin >> sub1Choice;
                 }
                 switch(sub1Choice)
                 {
                     case 1:
-                        
+                        cout << "WHICH RIDE DO YOU WANT TO PRINT?" << endl;
+                        for(int i=0; i<myPark->getRideCount(); i++)
+                        {
+                            cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
+                        }
+                        int printChoice;
+                        cin >> printChoice;
+                        while(printChoice<0 || printChoice>myPark->getRideCount())
+                        {
+                            cout << "Please Enter Valid Input\nChoice: ";
+                            cin >> printChoice;
+                        }
+                        myPark->getRide(printChoice-1)->printRide();
                         break;
                     case 2:
                         myPark->printRides();
@@ -48,8 +60,7 @@ int main()
                 break;
         
         }
-    }while(switchChoice != 4);
-	
-	cout << "\n\n*****GOODBYE! :) *****\n\n";
+    }while(switchChoice != 4);   
+    cout << "\n\n*****GOODBYE! :) *****\n\n";
     return 0;
 }
