@@ -16,7 +16,8 @@ int main()
         cout << "Option 1: Print Rides" << endl;
         cout << "Option 2: Delete Rides" << endl;
         cout << "Option 3: Add Rides" << endl;
-        cout << "Option 4: End Program" << endl;
+        cout << "Option 4: Edit Rides" << endl;
+        cout << "Option 5: End Program" << endl;
 
         switch(switchChoice)
         {
@@ -42,7 +43,7 @@ int main()
                         cin >> printChoice;
                         while(printChoice<0 || printChoice>myPark->getRideCount())
                         {
-                            cout << "Please Enter Valid Input\nChoice: ";
+                            cout << "Please Enter Valid Input(1-" << myPark->getRideCount() << ")\nChoice: ";
                             cin >> printChoice;
                         }
                         myPark->getRide(printChoice-1)->printRide();
@@ -53,14 +54,31 @@ int main()
                 }
                 break;
             case 2:
-            
+                cout << "WHICH RIDE WOULD YOU LIKE TO REMOVE?";
+                for(int i=0; i<myPark->getRideCount(); i++)
+                {
+                    cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
+                }
+                cout << "0.\tCancel" << endl;
+                int sub2Choice;
+                cin >> sub2Choice;
+                while(sub2Choice<0 || sub2Choice>myPark->getRideCount())
+                {
+                    cout << "Please Enter Valid Input(1-" << myPark->getRideCount() << ")\nChoice: ";
+                    cin >> sub2Choice;
+                }
+                cout << "Ride " << myPark->getRide(sub2Choice)->getname << " was successfully deleted" << endl;
+                myPark->removeRide(sub2Choice-1);
                 break;
             case 3:
-            
+                
+                break;
+            case 4:
+
                 break;
         
         }
-    }while(switchChoice != 4);   
+    }while(switchChoice != 5);   
     cout << "\n\n*****GOODBYE! :) *****\n\n";
     return 0;
 }
