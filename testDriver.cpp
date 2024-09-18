@@ -91,6 +91,7 @@ int main() {
                     cout << "CHOICE: ";
                     cin >> choice;
                 }
+                if (choice == 0) break;
                 myPark->removeRide(choice - 1);
                 choice = 0;
                 break;
@@ -107,8 +108,9 @@ int main() {
                     cout << "CHOICE: ";
                     cin >> choice;
                 }
+                if (choice == 0) break;
+                modify = myPark->getRide(choice - 1);
                 while(choice != 0) {
-                    modify = myPark->getRide(choice - 1);
                     cout << "CURRENT RIDE ATTRIBUTES" << endl;
                     modify->printRide();
                     cout << "Which attribute do you want to change:" << endl;
@@ -169,7 +171,7 @@ int main() {
                 cout << "Print Menu" << endl;
                 cout << "1.\tPrint One Ride\n2.\tPrint All Rides\n0.\tCancel\nCHOICE: ";
                 cin >> choice;
-                while (choice < 0 || choice > 3) {
+                while (choice < 0 || choice > 2) {
                     cout << "invalid entry, please enter a number between 0 and 2" << endl;
                     cin >> choice;
                 }
@@ -188,6 +190,7 @@ int main() {
                             cout << "CHOICE: ";
                             cin >> choice;
                         }
+                        if (choice == 0) break;
                         cout << string(58, '*') << endl;
                         myPark->getRide(choice - 1)->printRide();
                         break;

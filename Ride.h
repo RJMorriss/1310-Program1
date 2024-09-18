@@ -1,5 +1,5 @@
 /*
-    Author: Robert J. Morriss
+    Author: Robert J. Morriss, Lloyd D. Galvez
     Date: 9/14/24
     File: Ride.h
     Purpose: Header file for Ride Class for CSC 1310-105 Group 4 Program 1

@@ -1,5 +1,5 @@
 /*
-    Author: Robert J. Morriss
+    Author: Robert J. Morriss, Lloyd D. Galvez
     Date: 9/13/24
     File: Cart.cpp
     Purpose: Function definition file for Cart Class for CSC 1310-105 Group 4 Program 1
