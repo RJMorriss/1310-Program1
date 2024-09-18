@@ -1,5 +1,5 @@
 /*
-    Author: Robert J. Morriss
+    Author: Robert J. Morriss, Lloyd D. Galvez
     Date: 9/13/24
     File: Cart.h
     Purpose: Header file for Cart Class for CSC 1310-105 Group 4 Program 1
@@ -15,7 +15,7 @@ class Cart {
     private:
         int rowSize;
         int rows;
-        bool mountType;
+        string mountType;
         string color;
         bool* rowOperationArr;
 
@@ -23,21 +23,23 @@ class Cart {
 
     public:
         Cart();
-        Cart(int, int, bool, string);
+        Cart(int, int, string, string);
         ~Cart();
 
         int getRowSize();
         int getRows();
-        bool getType();
+        string getType();
         string getColor();
         bool isRowOperational(int);
         int getCurrentCapacity();
 
         void setRowSize(int);
         void setRows(int);
-        void setType(bool);
+        void setType(string);
         void setColor(string);
         void setRowStatus(int, bool);
+
+        void printCart();
 };
 
 #endif

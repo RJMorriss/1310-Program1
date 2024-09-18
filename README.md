@@ -45,39 +45,39 @@ This will represent the Amusement Park itself, all of the parks rides will be st
 
 #### Storage Class Functions
 - Private
-    - void arrSizeUp(int)
+    - void arrSizeUp()
         - Called after a ride is created and added to the ride array but array is at max capacity
-        - Pass in the current size of the Ride array
-        - dynamically allocate a new array with twice the size
         - update the size variable
+        - dynamically allocate a new array with twice the size
         - add all elements from the current array to the new array
         - delete current array
         - set the new array to the class attribute
-    - void arrSizeDown(int)
+    - void arrSizeDown()
         - Called after a ride is deleted from the Ride Array which lowers the size to equal or below half capacity
-        - Pass in the current size of the Ride array
+        - update the size variable
         - dynamically allocate a new array with half the size
             - lower limit of size 1
-        - update the size variable
         - add all elements from the current array to the new array
         - delete current array
         - set the new array to the class attribute
-    - void setSize(int)
-        - Sets the size attribute to parameter
 - Public
     - Park()
         - Constructor for the Park class
-        - Initializes the Ride array to a size of 2
+        - Initializes the Ride array to a size of 1
     - ~Park()
         - Destructor for the Park class
         - deletes all Rides in the Ride array, the Ride array, and the park itself
+    - Ride* getRide(int)
+        - Returns the Ride pointer at the given index in the Ride array
     - int getSize()
         - Returns the size of rideArr
+    - void setSize(int)
+        - Sets the size attribute to parameter
     - void addRide()
         - Add a default Ride to the rideArr using the default Ride constructor
-    - void addRide(string, int, int, string, Cart*)
+    - void addRide(string, int, string, Cart*)
         - Add a custom ride using the first overloaded Ride constructor
-    - void addRide(string, int, int, string, int, int, bool, string)
+    - void addRide(string, int, string, int, int, bool, string)
         - Add a custom ride using the secodn overloaded Ride constructor and overloaded Cart constructor
     - void removeRide(int)
         - Remove the ride at the specified index in the rideArr

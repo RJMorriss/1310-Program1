@@ -1,5 +1,5 @@
 /*
-    Author: Robert J. Morriss
+    Author: Robert J. Morriss, Lloyd D. Galvez
     Date: 9/13/24
     File: Cart.cpp
     Purpose: Function definition file for Cart Class for CSC 1310-105 Group 4 Program 1
@@ -16,7 +16,8 @@ Cart::Cart() {
     this->rows = 1;
     this->mountType = true;
     this->color = "";
-    this->rowOperationArr = new bool[1]{true};
+    this->rowOperationArr = new bool[1];
+    this->rowOperationArr[0] = true;
 }
 
 /**
@@ -27,7 +28,7 @@ Cart::Cart() {
  * @param bool mountingType - How the cart is mounted to the rail, true for over (Cart sits on top of the ride rail), False for Under (Top of Cart is attached to the bottom of the ride rail)
  * @param string color - Color of the Cart
  */
-Cart::Cart(int rowSize, int rows, bool mountingType, string color) {
+Cart::Cart(int rowSize, int rows, string mountingType, string color) {
     this->rowSize = rowSize;
     this->rows = rows;
     this->mountType = mountingType;
@@ -55,7 +56,7 @@ int Cart::getRows() { return this->rows; };
 /**
  * @return The mounting type of the Cart
  */
-bool Cart::getType() { return this->mountType; };
+string Cart::getType() { return this->mountType; };
 
 /**
  * @return The Color of the Cart
@@ -98,7 +99,7 @@ void Cart::setRows(int rows) {
  * Sets a new mounting type for the Cart
  * @param bool Type - New mounting type of the Cart
  */
-void Cart::setType(bool type) { this->mountType = type; };
+void Cart::setType(string type) { this->mountType = type; };
 
 /**
  * Sets a new color for the Cart
@@ -133,4 +134,14 @@ void Cart::updateOperationalArr(int newRows) {
         delete [] this->rowOperationArr;
         this->rowOperationArr = newArr;
     }
+}
+
+/** printCart()
+ * prints all information about the cart
+ */
+void Cart::printCart() {
+    cout << "\t\tROW SIZE:\t" << this->getRowSize() << endl;
+    cout << "\t\tROWS:\t\t" << this->getRows() << endl;
+    cout << "\t\tMOUNT TYPE:\t"<< this->getType() << endl;
+    cout << "\t\tCOLOR:\t\t" << this->getColor() << endl;
 }
