@@ -69,6 +69,8 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - deletes all Rides in the Ride array, the Ride array, and the park itself
     - Ride* getRide(int)
         - Returns the Ride pointer at the given index in the Ride array
+    - int getRideCount()
+        - Returns the current value of the rideCount attribute variable
     - int getSize()
         - Returns the size of rideArr
     - void setSize(int)
@@ -83,6 +85,8 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - Remove the ride at the specified index in the rideArr
         - Move all further rides down
         - Update rideCount
+    - void printRides()
+        - Loops through the rideArr and calls the printRide() member function on each Ride
 
 ### Data Class (Ride Class)
 This class will represents a ride, the ride will contain a series of information about themselves describing a variety of attributes
@@ -137,6 +141,9 @@ This class will represents a ride, the ride will contain a series of information
         - Returns a pointer to the Ride's Cart object
     - void setCart(Cart*)
         - Set the Ride's Cart to the parameter
+    - void printRide()
+        - Prints a formatted description of the member variables of the Ride object to the console
+        - Calls the printCart member function of its Cart object
 
 ### Other Class (Cart Class)
 This class will store information about a passenger cart for a specific ride
@@ -209,3 +216,5 @@ This class will store information about a passenger cart for a specific ride
         - Sets the operation status of a row at a given index to the given value
     - int getCurrentCapacity()
         - Returns the maximum capacity of the Cart based on row size * number of operational rows
+    - void printCart()
+        - Prints a formatted description of the member variables of the Cart object to the console
