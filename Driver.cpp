@@ -1,4 +1,8 @@
 #include<iostream>
+#include"Park.h"
+#include"Cart.h"
+#include"Ride.h"
+
 using namespace std;
 
 int main()
@@ -17,7 +21,24 @@ int main()
         switch(switchChoice)
         {
             case 1:
-                
+                cout << "Print Submenu" << endl;
+                cout << "Option 1: Print One\nOption 2: Print All" << endl;
+                int sub1Choice;
+                cin >> sub1Choice;
+                while(sub1Choice<0 || sub1Choice>2)
+                {
+                    cout << "Please Enter a valid Input" << endl;
+                    cin >> sub1Choice;
+                }
+                switch(sub1Choice)
+                {
+                    case 1:
+                        
+                        break;
+                    case 2:
+                        myPark->printRides();
+                        break;
+                }
                 break;
             case 2:
             
