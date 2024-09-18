@@ -5,6 +5,8 @@
     Purpose: Test functionality of the Park, Ride, and Cart classes (not to be used a functional program driver)
 */
 
+// TODO: Format outputs to be visually appealing 
+
 #include "Park.h"
 
 int main() {
