@@ -71,9 +71,7 @@ Cart* Ride::getCart() { return this->cart; };
 // SETTERS:
 
 void Ride::setName(string name) { this->name = name; };
-
-// Resets the Capacity of the ride by calculating the row size * # of operational rows
-void Ride::setCap() { this->capacity = this->cart->getCurrentCapacity(); };
+void Ride::setCap() { this->capacity = this->cart->getCurrentCapacity(); }; // Resets the Capacity of the ride by calculating the row size * # of operational rows
 void Ride::setYear(int year) { this->year = year; };
 void Ride::setType(string type) { this->type = type; };
 void Ride::setCart(Cart* cart) { this->cart = cart; };
