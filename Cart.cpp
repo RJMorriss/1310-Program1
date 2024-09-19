@@ -7,6 +7,8 @@
 
 #include "Cart.h"
 
+// CONSTRUCTORS:
+
 /**
  * Default constructor for the Cart object
  * Initialzes all attributes of the object to their default
@@ -37,82 +39,15 @@ Cart::Cart(int rowSize, int rows, string mountingType, string color) {
     for (int i = 0; i < this->rows; i++) { this->rowOperationArr[i] = true; }
 }
 
+// DESTRUCTOR:
+
 /**
  * Destructor for the Cart object
  * Deletes the dynamic boolean array
  */
 Cart::~Cart(){ delete [] this->rowOperationArr; }
 
-/**
- * @return Amount of seats in each row
- */
-int Cart::getRowSize() { return this->rowSize; };
-
-/**
- * @return Amount of rows in the Cart
- */
-int Cart::getRows() { return this->rows; };
-
-/**
- * @return The mounting type of the Cart
- */
-string Cart::getType() { return this->mountType; };
-
-/**
- * @return The Color of the Cart
- */
-string Cart::getColor() { return this-> color; };
-
-/**
- * Determines if a specified row of the Cart is operational
- * @param int Index of the row in the rowOperationArr to check
- * @return If the row is operational
- */
-bool Cart::isRowOperational(int index) { return this->rowOperationArr[index]; };
-
-/**
- * Multiplies the number of seats in a row by the number of operational rows
- * @return The operational capacity of the Cart
- */
-int Cart::getCurrentCapacity() {
-    int cap = 0;
-    for (int i = 0; i < this->rows; i++) { if (isRowOperational(i)) cap += this->rowSize; }
-    return cap;
-}
-
-/**
- * Sets a new amount of seats in the rows of the Cart
- * @param int Rowsize - New amount of seats in a row
- */
-void Cart::setRowSize(int rowSize) { this->rowSize = rowSize; };
-
-/**
- * Sets a new amount of rows and updates the size of the rowOperationArr for the Cart
- * @param int Rows - New amount of rows in the Cart
- */
-void Cart::setRows(int rows) { 
-    updateOperationalArr(rows);
-    this->rows = rows; 
-};
-
-/**
- * Sets a new mounting type for the Cart
- * @param bool Type - New mounting type of the Cart
- */
-void Cart::setType(string type) { this->mountType = type; };
-
-/**
- * Sets a new color for the Cart
- * @param string Color - New color of the Cart
- */
-void Cart::setColor(string color) { this->color = color; };
-
-/**
- * Changes the operational status of a specified row in the Cart
- * @param int Index - Index of the row in the Cart being modified
- * @param bool Stat - New status of the selected row 
- */
-void Cart::setRowStatus(int index, bool stat) { this->rowOperationArr[index] = stat; };
+// HELPERS:
 
 /**
  * Called by the setRows function
@@ -135,6 +70,41 @@ void Cart::updateOperationalArr(int newRows) {
         this->rowOperationArr = newArr;
     }
 }
+
+// GETTERS:
+
+int Cart::getRowSize() { return this->rowSize; };
+int Cart::getRows() { return this->rows; };
+string Cart::getType() { return this->mountType; };
+string Cart::getColor() { return this-> color; };
+/**
+ * Determines if a specified row of the Cart is operational
+ * @param int Index of the row in the rowOperationArr to check
+ * @return If the row is operational
+ */
+bool Cart::isRowOperational(int index) { return this->rowOperationArr[index]; };
+/**
+ * Multiplies the number of seats in a row by the number of operational rows
+ * @return The operational capacity of the Cart
+ */
+int Cart::getCurrentCapacity() {
+    int cap = 0;
+    for (int i = 0; i < this->rows; i++) { if (isRowOperational(i)) cap += this->rowSize; }
+    return cap;
+}
+
+// SETTERS:
+
+void Cart::setRowSize(int rowSize) { this->rowSize = rowSize; };
+void Cart::setRows(int rows) { // Calls updateOperationalArr to ensure the array has the same number of elements as there are rows
+    updateOperationalArr(rows);
+    this->rows = rows; 
+};
+void Cart::setType(string type) { this->mountType = type; };
+void Cart::setColor(string color) { this->color = color; };
+void Cart::setRowStatus(int index, bool stat) { this->rowOperationArr[index] = stat; };
+
+// PRINTER:
 
 /** printCart()
  * prints all information about the cart

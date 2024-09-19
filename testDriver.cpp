@@ -5,8 +5,10 @@
     Purpose: Test functionality of the Park, Ride, and Cart classes (not to be used a functional program driver)
 */
 
-// TODO: Format outputs to be visually appealing 
-
+/** TODO:
+ * @line 169 Add row operational status to the Ride editor
+ * Format outputs to be visually appealing
+ */
 #include "Park.h"
 
 int main() {
@@ -30,7 +32,7 @@ int main() {
             cin >> choice;
         }
         switch (choice) {
-            case 1:
+            case 1: // 1. ADD RIDE
                 cout << "Add Menu" << endl;
                 cout << "1.\tBlank Ride\n2.\tRide w/out Cart\n3.\tFull Ride\n0.\tCancel\nCHOICE: ";
                 cin >> choice;
@@ -39,10 +41,10 @@ int main() {
                     cin >> choice;
                 }
                 switch (choice) {
-                    case 1:
+                    case 1: // 1.1 ADD BLANK RIDE
                         myPark->addRide();
                         break;
-                    case 2:
+                    case 2: // 1.2 CUSTOM RIDE, DEFUALT CART
                         cin.ignore();
                         cout << "NAME:\t\t";
                         getline(cin, name);
@@ -54,7 +56,7 @@ int main() {
 
                         myPark->addRide(name, year, type);
                         break;
-                    case 3:
+                    case 3: // 1.3 CUSTROM RIDE, CUSTOM CART
                         cin.ignore();
                         cout << "NAME:\t\t";
                         getline(cin, name);
@@ -75,12 +77,12 @@ int main() {
 
                         myPark->addRide(name, year, type, rowSize, rows, mountType, color);
                         break;
-                    default:
+                    default: // 1.0 CANCEL
                         break;
                 }
                 choice = 0;
                 break;
-            case 2:
+            case 2: // 2. REMOVE RIDE
                 cout << "Which Ride should be Removed:" << endl;
                 for (int i = 0; i < myPark->getRideCount(); i++) {
                     cout << i + 1 << ".\t" << myPark->getRide(i)->getName() << endl;
@@ -97,7 +99,7 @@ int main() {
                 myPark->removeRide(choice - 1);
                 choice = 0;
                 break;
-            case 3:
+            case 3: // 3. EDIT RIDE
                 cout << "Which Ride should be Modified:" << endl;
                 for (int i = 0; i < myPark->getRideCount(); i++) {
                     cout << i + 1 << ".\t" << myPark->getRide(i)->getName() << endl;
@@ -129,47 +131,49 @@ int main() {
                     }
                     cin.ignore();
                     switch (choice) {
-                        case 1:
+                        case 1: // 3.1 CHANGE NAME
                             cout << "NEW NAME:\t";
                             getline(cin, name);
                             modify->setName(name);
                             break;
-                        case 2:
+                        case 2: // 3.2 CHANGE YEAR
                             cout << "NEW YEAR:\t";
                             cin >> year;
                             modify->setYear(year);
                             break;
-                        case 3:
+                        case 3: // 3.3 CHANGE RIDE TYPE
                             cout << "NEW TYPE:\t";
                             getline(cin, type);
                             modify->setType(type);
                             break;
-                        case 4:
+                        case 4: // 3.4 CHANGE ROW SIZE
                             cout << "NEW ROW SIZE:\t";
                             cin >> rowSize;
                             modify->getCart()->setRowSize(rowSize);
                             break;
-                        case 5:
+                        case 5: // 3.5 CHANGE ROW COUNT
                             cout << "NEW ROWS:\t";
                             cin >> rows;
                             modify->getCart()->setRows(rows);
                             break;
-                        case 6:
+                        case 6: // 3.6 CHANGE CART MOUNT TYPE
                             cout << "NEW MOUNT:\t";
                             getline(cin, mountType);
                             modify->getCart()->setType(mountType);
                             break;
-                        case 7:
+                        case 7: // 3.7 CHANGE COLOR
                             cout << "NEW COLOR:\t";
                             getline(cin, color);
                             modify->getCart()->setColor(color);
                             break;
-                        default:
+                        case 8: // 3.8 ROW OPERATIONS EDITOR
+                            break;
+                        default: // 3.0 CANCEL
                             break;
                     }
                 }
                 break;
-            case 4:
+            case 4: // 4. PRINT RIDE(S)
                 cout << "Print Menu" << endl;
                 cout << "1.\tPrint One Ride\n2.\tPrint All Rides\n0.\tCancel\nCHOICE: ";
                 cin >> choice;
@@ -179,7 +183,7 @@ int main() {
                 }
 
                 switch (choice) {
-                    case 1:
+                    case 1: // 4.1 PRINT ONE RIDE
                         cout << "Which Ride should be Printed:" << endl;
                         for (int i = 0; i < myPark->getRideCount(); i++) {
                             cout << i + 1 << ".\t" << myPark->getRide(i)->getName() << endl;
@@ -196,7 +200,7 @@ int main() {
                         cout << string(58, '*') << endl;
                         myPark->getRide(choice - 1)->printRide();
                         break;
-                    case 2:
+                    case 2: // 4.2 PRINT ALL RIDES
                         myPark->printRides();
                         break;
                     default:
@@ -204,7 +208,7 @@ int main() {
                 }
                 choice = 0;
                 break;
-            default:
+            default: // 5. EXIT
                 break;
         }
     }
