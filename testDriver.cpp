@@ -6,7 +6,6 @@
 */
 
 /** TODO:
- * @line 169 Add row operational status to the Ride editor
  * Format outputs to be visually appealing
  */
 #include "Park.h"
