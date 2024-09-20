@@ -16,7 +16,7 @@
 Cart::Cart() {
     this->rowSize = 1;
     this->rows = 1;
-    this->mountType = true;
+    this->mountType = "";
     this->color = "";
     this->rowOperationArr = new bool[1];
     this->rowOperationArr[0] = true;

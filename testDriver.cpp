@@ -215,7 +215,7 @@ int main() {
 
     cout << "GOODBYE!";
     
-    delete modify;
+    // delete modify;
     delete myPark;
 
     // myPark->addRide("freakCoaster", 2024, "Thrill", 4, 13, "Over", "Red");
