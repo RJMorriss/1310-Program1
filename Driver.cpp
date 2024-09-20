@@ -14,6 +14,7 @@ int main()
 
     string rideName, rideType, rideCart, rideColor;
     int rideYear, numRows, rowSize;
+    int sub1Choice, printChoice, sub2Choice, sub3Choice, sub4Choice, modChoice;
 
     do{
         cout << "************************************************" << endl;
@@ -30,7 +31,6 @@ int main()
             case 1:
                 cout << "Print Submenu" << endl;
                 cout << "Option 1: Print One\nOption 2: Print All" << endl;
-                int sub1Choice;
                 cin >> sub1Choice;
                 while(sub1Choice<0 || sub1Choice>2)
                 {
@@ -46,7 +46,6 @@ int main()
                         {
                             cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
                         }
-                        int printChoice;
                         cin >> printChoice;
                         while(printChoice<0 || printChoice>myPark->getRideCount())
                         {
@@ -69,7 +68,6 @@ int main()
                     cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
                 }
                 cout << "0.\tCancel" << endl;
-                int sub2Choice;
                 cin >> sub2Choice;
                 while(sub2Choice<0 || sub2Choice>myPark->getRideCount())
                 {
@@ -81,7 +79,6 @@ int main()
                 break;
             //Add rides
             case 3:
-                int sub3Choice;
                 cout << "\n*****ADD A RIDE*****\n";
                 cout << "1.\tAdd Ride Without A Cart\n2.\tAdd A Full Ride\n0.\tCancel\n  ENTER YOUR CHOICE: ";
                 cin >> sub3Choice;
@@ -143,7 +140,6 @@ int main()
                 }
                 cout << "0.\tCancel" << endl;
 
-                int sub4Choice;
                 cin >> sub4Choice;
                 while(sub4Choice<0 || sub4Choice>myPark->getRideCount())
                 {
@@ -154,7 +150,6 @@ int main()
                 cout << "WHICH PART OF THE RIDE WOULD YOU LIKE TO MODIFY?" << endl << endl;
                 cout << "1.\t\tModify Name\n2.\t\tModfy Year\n3.\t\tModify Type\n4.\t\tModify Cart Type\n";
                 cout << "5.\t\tModify Color\n6.\t\tModify Number of Rows\n7.\t\tModify Row Size\n0.\t\tCancel" << endl;
-                int modChoice;
                 cin >> modChoice;
                 while(modChoice<0 || modChoice>7)
                 {
