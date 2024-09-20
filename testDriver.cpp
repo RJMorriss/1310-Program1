@@ -29,6 +29,7 @@ int main() {
         cin >> choice;
         while (choice < 1 || choice > 5) {
             cout << "invalid entry, please enter a number between 1 and 5" << endl;
+            cout << "CHOICE: ";
             cin >> choice;
         }
         switch (choice) {
@@ -38,6 +39,7 @@ int main() {
                 cin >> choice;
                 while (choice < 0 || choice > 3) {
                     cout << "invalid entry, please enter a number between 0 and 3" << endl;
+                    cout << "CHOICE: ";
                     cin >> choice;
                 }
                 switch (choice) {
@@ -186,13 +188,14 @@ int main() {
                                 cout << "CHOICE: ";
                                 cin >> choice;
                             }
+                            if (choice == 0) break;
                             cout << "Is this row Operational? (T/F):  ";
                             cin >> input;
                             if (toupper(input) != 'T' && toupper(input) != 'F') {
                                 cout << "invalid input. please enter a \'T\' or \'F\'";
                                 cin >> input;
                             }
-                            modify->getCart()->setRowStatus(choice, toupper(input) == 'T');
+                            modify->getCart()->setRowStatus(choice - 1, toupper(input) == 'T');
                             modify->setCap();
                             break;
                         default: // 3.0 CANCEL
@@ -242,7 +245,6 @@ int main() {
 
     cout << "GOODBYE!";
     
-    // delete modify;
     delete myPark;
 
     // myPark->addRide("freakCoaster", 2024, "Thrill", 4, 13, "Over", "Red");
