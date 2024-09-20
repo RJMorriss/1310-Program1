@@ -7,6 +7,7 @@
 
 /** TODO:
  * Format outputs to be visually appealing
+ * Comment the driver for readability
  */
 #include "Park.h"
 
@@ -243,7 +244,7 @@ int main() {
         }
     }
 
-    cout << "GOODBYE!";
+    cout << "********** GOODBYE! **********\n\n";
     
     delete myPark;
 
