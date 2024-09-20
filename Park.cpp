@@ -7,44 +7,8 @@
 
 #include "Park.h"
 
-/**
- * Called automatically by the addRide functions when the Ride Array function is full
- * Update the size variable
- * Dynamically allocates a new array with twice the size
- * Add all elements from the current array to the new array
- * Delete the current array
- * Set the new array to the class attribute
- */
-void Park::arrSizeUp() {
-    setSize(this->size * 2);
-    Ride** newArr = new Ride*[this->size];
-    for (int i = 0; i < this->rideCount; i++) {
-        newArr[i] = this->rideArr[i];
-    }
-    delete [] this->rideArr;
-    this->rideArr = newArr;
-}
 
-/**
- * Called automatically by the removeRide function when the ridecount is less than half the Ride Array size
- * Update the size variable
- * Dynamically allocate a new array with half the size with a lower limit of size 1
- * add all elemnts from the current array within the applicable range to the new array
- * delete the current array
- * set the new array to the class attribute
- */
-void Park::arrSizeDown() {
-    setSize(this->size / 2);
-    Ride** newArr = new Ride*[this->size];
-    for (int i = 0; i < this->rideCount; i++) {
-        newArr[i] = this->rideArr[i];
-    }
-    // for (int i = 0; i < this->size * 2; i++) {
-    //     delete this->rideArr[i];
-    // }
-    delete [] this->rideArr;
-    this->rideArr = newArr;
-}
+// CONSTRUCTOR:
 
 /**
  * Constructor for the Park Class
@@ -55,6 +19,8 @@ Park::Park() {
     this->size = 1;
     this->rideArr = new Ride*[this->size];
 }
+
+// DESTRUCTOR:
 
 /**
  * Destructor for the Park Class
@@ -67,32 +33,53 @@ Park::~Park() {
     delete [] this->rideArr;
 }
 
+// GETTERS:
+
 /**
  * Access the Ride array to a specified index and returns the pointer element to the user
  * @param int index - The index of the desired Ride in the Ride array
  * @return Ride* - A Ride pointer from the Ride array at the specified index
  */
-Ride* Park::getRide(int index) {
-    return this->rideArr[index];
-}
-
-/**
- * Accesses the number of Rides in the Park
- * @return int - Current number of rides in the Ride array
- */
+Ride* Park::getRide(int index) { return this->rideArr[index]; }
 int Park::getRideCount() { return this->rideCount; };
-
-/**
- * Accesses the Park's size attribute variable
- * @return int - Size size of the Park's rideArr
- */
 int Park::getSize() { return this->size; };
 
-/**
- * Sets the Park's size attribute variable
- * @param int size - the size of the Park's rideArr
- */
+// SETTERS:
+
 void Park::setSize(int size) { this->size = size; }; 
+
+// HELPERS:
+
+/**
+ * Called automatically by the addRide and removeRide functions when the ridecount is either equal to the Ride Array size or less than half the Ride Array size
+ * Update the size variable
+ * - Double for a size increase
+ * - Half for a size decrase
+ * Dynamically allocate a new array with the new size with a lower limit of size 1
+ * add all elements from the current array within the applicable range to the new array
+ * delete the current array
+ * set the new array to the class attribute
+ * @param bool true to size up, false to size down
+ */
+void Park::arrSizeModify(bool up) {
+    cout << "Modifying array size:\t";
+    if (up) cout << "size up";
+    else cout << "size down";
+    cout << endl;
+    cout << "Size before: " << this->getSize() << endl;
+    
+    if (up) setSize(this->getSize() * 2);
+    else setSize(this->getSize() / 2);
+
+    cout << "Size after: " << this->getSize() << endl;
+
+    Ride** newArr = new Ride*[this->size];
+    for (int i = 0; i < this->rideCount; i++) {
+        newArr[i] = this->rideArr[i];
+    }
+    delete [] this->rideArr;
+    this->rideArr = newArr;
+}
 
 /**
  * Default addRide function, creates a pointer to a new Ride object, using the default contructor, and adds it to the Ride Array
@@ -100,7 +87,8 @@ void Park::setSize(int size) { this->size = size; };
 void Park::addRide() {
     Ride* newRide = new Ride();
     if (this->rideCount == this->size) {
-        arrSizeUp();
+        // arrSizeUp();
+        arrSizeModify(true);
     }
     this->rideArr[this->rideCount] = newRide;
     this->rideCount++;
@@ -114,7 +102,8 @@ void Park::addRide() {
 void Park::addRide(string name, int year, string type) {
     Ride* newRide = new Ride(name, year, type);
     if (this->rideCount == this->size) {
-        arrSizeUp();
+        // arrSizeUp();
+        arrSizeModify(true);
     }
     this->rideArr[this->rideCount] = newRide;
     this->rideCount++;
@@ -128,7 +117,8 @@ void Park::addRide(string name, int year, string type) {
 void Park::addRide(string name, int year, string type, int rowSize, int rows, string mountType, string color) {
     Ride* newRide = new Ride(name, year, type, rowSize, rows, mountType, color);
     if (this->rideCount == this->size) {
-        arrSizeUp();
+        // arrSizeUp();
+        arrSizeModify(true);
     }
     this->rideArr[this->rideCount] = newRide;
     this->rideCount++;
@@ -147,10 +137,13 @@ void Park::removeRide(int index) {
         }
         this->rideCount--;
         if (this->rideCount <= this->size / 2 && this->size > 1) {
-            arrSizeDown();
+            // arrSizeDown();
+            arrSizeModify(false);
         }
     }
 }
+
+// PRINTERS:
 
 /** printRides()
  * Prints all information about all rides in the Ride array

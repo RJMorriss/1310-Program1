@@ -5,6 +5,10 @@
     Purpose: Header file for Park Class for CSC 1310-105 Group 4 Program 1
 */
 
+/**
+ * TODO: Add Print to file
+ */
+
 #ifndef PARK_H
 #define PARK_H
 
@@ -16,8 +20,7 @@ class Park {
             rideCount;
         Ride** rideArr;
 
-        void arrSizeUp();
-        void arrSizeDown();
+        void arrSizeModify(bool);
 
     public:
         Park();
