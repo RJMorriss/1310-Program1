@@ -19,6 +19,7 @@ int main() {
            type,
            color,
            mountType;
+    char input;
     int year,
         rowSize,
         rows;
@@ -121,11 +122,11 @@ int main() {
                     cout << "\tRide attributes:" << endl;
                     cout << "\t1.\tRide Name\n\t2.\tRide Year\n\t3.\tRide Type\n";
                     cout << "\tCart attributes:" << endl;
-                    cout << "\t4.\tRow Size\n\t5.Cart Rows\n\t6.\tMount Type\n\t7.\tCart Color\n";
-                    cout << "0.\tExit Editor\nCHOICE: ";
+                    cout << "\t4.\tRow Size\n\t5.\tCart Rows\n\t6.\tMount Type\n\t7.\tCart Color\n\t8.\tRow Status\n";
+                    cout << "\t0.\tExit Editor\nCHOICE: ";
                     cin >> choice;
-                    while (choice < 0 || choice > 7) {
-                        cout << "invalid choice. please enter a number between 0 and 7" << endl;
+                    while (choice < 0 || choice > 8) {
+                        cout << "invalid choice. please enter a number between 0 and 8" << endl;
                         cout << "CHOICE: ";
                         cin >> choice;
                     }
@@ -167,6 +168,33 @@ int main() {
                             modify->getCart()->setColor(color);
                             break;
                         case 8: // 3.8 ROW OPERATIONS EDITOR
+                            cout << "CURRENT ROW STATUS:" << endl;
+                            for (int i = 0; i < modify->getCart()->getRows(); i++) {
+                                cout << i + 1 << ".\t";
+                                for (int j = 0; j < modify->getCart()->getRowSize(); j++) {
+                                    // cout << char(177 + (42 * (modify->getCart()->isRowOperational(i)))) << " ";
+                                    if (modify->getCart()->isRowOperational(i)) cout << "\033[42m  \033[0m ";
+                                    else cout << "\033[41m  \033[0m ";
+                                    
+                                }
+                                cout << endl;
+                            }
+                            cout << "0.\tCANCEL" << endl;
+                            cout << "Which Row do you want to modify?\nCHOICE: ";
+                            cin >> choice;
+                            while (choice < 0 || choice > modify->getCart()->getRows()) {
+                                cout << "invalid choice. please enter a number between - and " << modify->getCart()->getRows() << "." << endl;
+                                cout << "CHOICE: ";
+                                cin >> choice;
+                            }
+                            cout << "Is this row Operational? (T/F):  ";
+                            cin >> input;
+                            if (toupper(input) != 'T' && toupper(input) != 'F') {
+                                cout << "invalid input. please enter a \'T\' or \'F\'";
+                                cin >> input;
+                            }
+                            modify->getCart()->setRowStatus(choice, toupper(input) == 'T');
+                            modify->setCap();
                             break;
                         default: // 3.0 CANCEL
                             break;
@@ -215,7 +243,7 @@ int main() {
 
     cout << "GOODBYE!";
     
-    delete modify;
+    // delete modify;
     delete myPark;
 
     // myPark->addRide("freakCoaster", 2024, "Thrill", 4, 13, "Over", "Red");
