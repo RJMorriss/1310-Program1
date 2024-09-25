@@ -68,6 +68,8 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - Returns the Ride pointer at the given index in the Ride array
     - int getRideCount()
         - Returns the value of the rideCount attribute variable
+    - int getRideCount()
+        - Returns the current value of the rideCount attribute variable
     - int getSize()
         - Returns the size of rideArr
     - void setSize(int)
@@ -86,6 +88,8 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - Loops through all rides in the rideArr
             - Prints a numerical identifier
             - Calls the printRide member function on each ride
+    - void printRides()
+        - Loops through the rideArr and calls the printRide() member function on each Ride
 
 ### Data Class (Ride Class)
 This class will represents a ride, the ride will contain a series of information about themselves describing a variety of attributes
@@ -143,6 +147,9 @@ This class will represents a ride, the ride will contain a series of information
     - void printRide() 
         - Prints all the rides attributes in a neat, readable, format to the console
         - Calls the printCart member function on its Cart* attribute
+    - void printRide()
+        - Prints a formatted description of the member variables of the Ride object to the console
+        - Calls the printCart member function of its Cart object
 
 ### Other Class (Cart Class)
 This class will store information about a passenger cart for a specific ride
@@ -213,5 +220,7 @@ This class will store information about a passenger cart for a specific ride
         - Sets the color of the cart
     - void setRowStatus(int, bool)
         - Sets the operation status of a row at a given index to the given value
+    - int getCurrentCapacity()
+        - Returns the maximum capacity of the Cart based on row size * number of operational rows
     - void printCart()
-        - Prints the cart attribute values to the console in a neat, readable, format
+        - Prints a formatted description of the member variables of the Cart object to the console

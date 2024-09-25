@@ -94,7 +94,7 @@ int main() {
                 cout << "CHOICE: ";
                 cin >> choice;
                 while (choice < 0 || choice > myPark->getRideCount()) {
-                    cout << "invalid choice. please enter a number between - and " << myPark->getRideCount() << "." << endl;
+                    cout << "invalid choice. please enter a number between 0 and " << myPark->getRideCount() << "." << endl;
                     cout << "CHOICE: ";
                     cin >> choice;
                 }
@@ -185,15 +185,15 @@ int main() {
                             cout << "Which Row do you want to modify?\nCHOICE: ";
                             cin >> choice;
                             while (choice < 0 || choice > modify->getCart()->getRows()) {
-                                cout << "invalid choice. please enter a number between - and " << modify->getCart()->getRows() << "." << endl;
+                                cout << "invalid choice. please enter a number between 0 and " << modify->getCart()->getRows() << "." << endl;
                                 cout << "CHOICE: ";
                                 cin >> choice;
                             }
                             if (choice == 0) break;
                             cout << "Is this row Operational? (T/F):  ";
                             cin >> input;
-                            if (toupper(input) != 'T' && toupper(input) != 'F') {
-                                cout << "invalid input. please enter a \'T\' or \'F\'";
+                            while (toupper(input) != 'T' && toupper(input) != 'F') {
+                                cout << "invalid input. please enter a \'T\' or \'F\'\nCHOICE: ";
                                 cin >> input;
                             }
                             modify->getCart()->setRowStatus(choice - 1, toupper(input) == 'T');
