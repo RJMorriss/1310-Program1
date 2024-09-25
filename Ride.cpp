@@ -5,8 +5,6 @@
     Purpose: Function definition file for Ride Class for CSC 1310-105 Group 4 Program 1
 */
 
-// TODO: add comments to funtions
-
 #include "Ride.h"
 
 // CONSTRUCTORS:
