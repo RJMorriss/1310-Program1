@@ -45,21 +45,18 @@ This will represent the Amusement Park itself, all of the parks rides will be st
 
 #### Storage Class Functions
 - Private
-    - void arrSizeUp()
-        - Called after a ride is created and added to the ride array but array is at max capacity
-        - update the size variable
-        - dynamically allocate a new array with twice the size
-        - add all elements from the current array to the new array
-        - delete current array
+    - void arrSizeModify(bool)
+        - Called automatically by the addRide and removeRide functions when the ridecount is either equal to the Ride Array size or less than half the Ride Array size
+        - Update the size attribute variable
+            - Double for a size increase
+            - Half for a size decrease
+        - Dynamically allocate a new array with the new size with a lower limit of size 1
+        - add all elements from the current array within the applicable range to the new array
+        - delete the current array
         - set the new array to the class attribute
-    - void arrSizeDown()
-        - Called after a ride is deleted from the Ride Array which lowers the size to equal or below half capacity
-        - update the size variable
-        - dynamically allocate a new array with half the size
-            - lower limit of size 1
-        - add all elements from the current array to the new array
-        - delete current array
-        - set the new array to the class attribute
+        - boolean parameter
+            - true for a size up
+            - false for a size down
 - Public
     - Park()
         - Constructor for the Park class
@@ -69,6 +66,8 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - deletes all Rides in the Ride array, the Ride array, and the park itself
     - Ride* getRide(int)
         - Returns the Ride pointer at the given index in the Ride array
+    - int getRideCount()
+        - Returns the value of the rideCount attribute variable
     - int getRideCount()
         - Returns the current value of the rideCount attribute variable
     - int getSize()
@@ -85,6 +84,10 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - Remove the ride at the specified index in the rideArr
         - Move all further rides down
         - Update rideCount
+    - void printRides()
+        - Loops through all rides in the rideArr
+            - Prints a numerical identifier
+            - Calls the printRide member function on each ride
     - void printRides()
         - Loops through the rideArr and calls the printRide() member function on each Ride
 
@@ -123,24 +126,27 @@ This class will represents a ride, the ride will contain a series of information
         - deletes the Ride's Cart pointer and the Ride itself
     - string getName()
         - Returns the name of the Ride
-    - void setName(string)
-        - Sets the name of the Ride to the parameter
     - int getCap()
         - Returns the capacity of the Ride
-    - void setCap()
-        - Sets the capacity of the Ride using the Cart getCurrentCapacity() function
     - int getYear()
         - Returns the year of creation of the Ride
-    - void setYear(int)
-        - Sets the year of the Ride to the parameter
     - string getType()
         - Returns the type of the Ride
-    - void setType(string)
-        - Sets the type of the Ride to the parameter
     - Cart* getCart()
         - Returns a pointer to the Ride's Cart object
+    - void setName(string)
+        - Sets the name of the Ride to the parameter
+    - void setCap()
+        - Sets the capacity of the Ride using the Cart getCurrentCapacity() function
+    - void setYear(int)
+        - Sets the year of the Ride to the parameter
+    - void setType(string)
+        - Sets the type of the Ride to the parameter
     - void setCart(Cart*)
         - Set the Ride's Cart to the parameter
+    - void printRide() 
+        - Prints all the rides attributes in a neat, readable, format to the console
+        - Calls the printCart member function on its Cart* attribute
     - void printRide()
         - Prints a formatted description of the member variables of the Ride object to the console
         - Calls the printCart member function of its Cart object
@@ -155,11 +161,9 @@ This class will store information about a passenger cart for a specific ride
     * int rows
         * Amount of rows in the cart
         * default 1
-    * bool mountType
+    * string mountType
         * Stores how the cart is mounted to the Ride
-            * True for Over (Cart sits on top of the ride rail)
-            * False for Under (top of Cart is attached to the bottom of the ride rail)
-        * default True
+        * defualt ""
     * string color
         * Color of the cart
         * default ""
@@ -195,23 +199,25 @@ This class will store information about a passenger cart for a specific ride
         - Deletes the Cart itself
     - int getRowSize()
         - Returns the amount of seats in each row
-    - void setRowSize(int)
-        - Sets the amount of seats in each row
     - int getRows()
         - Returns the number of rows in the cart
+    - string getType()
+        - Returns the mounting type of the cart
+    - string getColor()
+        - Returns the color of the cart
+    - bool isRowOperational(int) 
+        - Returns a boolean value for the operational status of the row at a given index
+    - int getCurrentCapacity()
+        - Returns the maximum capacity of the Cart based on row size * number of operational rows
+    - void setRowSize(int)
+        - Sets the amount of seats in each row
     - void setRows(int) 
         - Seta the number of rows in the cart
         - Update size of rowOperation array
-    - bool getType()
-        - Returns the mounting type of the cart
     - void setType(bool)
         - Sets the mounting type of the cart
-    - string getColor()
-        - Returns the color of the cart
     - void setColor(string)
         - Sets the color of the cart
-    - bool isRowOperational(int) 
-        - Returns a boolean value for the operational status of the row at a given index
     - void setRowStatus(int, bool)
         - Sets the operation status of a row at a given index to the given value
     - int getCurrentCapacity()
