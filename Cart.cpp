@@ -115,3 +115,14 @@ void Cart::printCart() {
     cout << "\t\tMOUNT TYPE:\t"<< this->getType() << endl;
     cout << "\t\tCOLOR:\t\t" << this->getColor() << endl;
 }
+
+/** printCartToFile(ofstream&) 
+ * prints all information about the cart to a file at the given filestream
+ * @param ofstream the output file stream passed by reference
+*/
+void Cart::printCartToFile(ofstream& outfile) {
+    outfile << "\t\tROW SIZE:\t" << this->getRowSize() << endl;
+    outfile << "\t\tROWS:\t\t" << this->getRows() << endl;
+    outfile << "\t\tMOUNT TYPE:\t"<< this->getType() << endl;
+    outfile << "\t\tCOLOR:\t\t" << this->getColor() << endl;
+}

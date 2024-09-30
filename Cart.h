@@ -9,6 +9,7 @@
 #define CART_H
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Cart {
@@ -40,6 +41,7 @@ class Cart {
         void setRowStatus(int, bool);
 
         void printCart();
+        void printCartToFile(ofstream&);
 };
 
 #endif

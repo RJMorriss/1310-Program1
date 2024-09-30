@@ -87,3 +87,16 @@ void Ride::printRide() {
     cout << "CART:" << endl;
     this->cart->printCart();
 }
+
+/** printRideToFile(ofstream&)
+ * Prints all information about the ride and it's cart to the output file at the given filestream
+ * @param ofstream the output file stream passed by reference
+ */
+void Ride::printRideToFile(ofstream& outfile) {
+    outfile << "NAME:\t\t" << this->getName() << endl;
+    outfile << "YEAR:\t\t" << this->getYear() << endl;
+    outfile << "CAPACITY:\t" << this->getCap() << endl;
+    outfile << "TYPE:\t\t" << this->getType() << endl;
+    outfile << "CART:" << endl;
+    this->cart->printCartToFile(outfile);
+}

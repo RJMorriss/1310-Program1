@@ -36,6 +36,7 @@ class Ride {
         void setType(string);
         void setCart(Cart*);
         void printRide();
+        void printRideToFile(ofstream&);
 };
 
 

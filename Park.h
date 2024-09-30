@@ -37,6 +37,7 @@ class Park {
         void addRide(string, int, string, int, int, string, string);
         void removeRide(int);
         void printRides();
+        void printToFile(ofstream&);
 };
 
 #endif

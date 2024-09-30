@@ -14,13 +14,16 @@
 int main() {
     Park* myPark = new Park();
     Ride* modify;
-    int choice;
+    ofstream outfile;
+    ifstream f; // Used to test if a filename already exists when printing to a file
     string name,
            type,
            color,
-           mountType;
+           mountType,
+           filename;
     char input;
-    int year,
+    int choice,
+        year,
         rowSize,
         rows;
 
@@ -190,13 +193,13 @@ int main() {
                                 cin >> choice;
                             }
                             if (choice == 0) break;
-                            cout << "Is this row Operational? (T/F):  ";
+                            cout << "Is this row Operational? (y/n):  ";
                             cin >> input;
-                            while (toupper(input) != 'T' && toupper(input) != 'F') {
-                                cout << "invalid input. please enter a \'T\' or \'F\'\nCHOICE: ";
+                            while (toupper(input) != 'Y' && toupper(input) != 'N') {
+                                cout << "invalid input. please enter a \'y\' or \'n\'\nCHOICE: ";
                                 cin >> input;
                             }
-                            modify->getCart()->setRowStatus(choice - 1, toupper(input) == 'T');
+                            modify->getCart()->setRowStatus(choice - 1, toupper(input) == 'Y');
                             modify->setCap();
                             break;
                         default: // 3.0 CANCEL
@@ -206,10 +209,10 @@ int main() {
                 break;
             case 4: // 4. PRINT RIDE(S)
                 cout << "Print Menu" << endl;
-                cout << "1.\tPrint One Ride\n2.\tPrint All Rides\n0.\tCancel\nCHOICE: ";
+                cout << "1.\tPrint One Ride\n2.\tPrint All Rides\n3.\tPrint To File\n0.\tCancel\nCHOICE: ";
                 cin >> choice;
-                while (choice < 0 || choice > 2) {
-                    cout << "invalid entry, please enter a number between 0 and 2" << endl;
+                while (choice < 0 || choice > 3) {
+                    cout << "invalid entry, please enter a number between 0 and 3" << endl;
                     cin >> choice;
                 }
 
@@ -233,6 +236,26 @@ int main() {
                         break;
                     case 2: // 4.2 PRINT ALL RIDES
                         myPark->printRides();
+                        break;
+                    case 3: // 4.3 PRINT TO FILE
+                        cout << "What filename should the park be printed to? (example.txt)" << endl;
+                        cin.ignore();
+                        getline(cin, filename);
+                        f.open(filename);
+                        if (f.good()) {
+                            cout << "Filename \"" << filename << "\" already exists, continuing will override the current file.\n\n Do you want to continue? (y/n): ";
+                            cin >> input;
+                            while (toupper(input) != 'Y' && toupper(input) != 'N') {
+                                cout << "invalid input. please enter a \'y\' or \'n\'\nCHOICE: ";
+                                cin >> input;
+                            }
+                            if (toupper(input) == 'N') break;
+                        }
+                        f.close();
+                        outfile.open(filename);
+                        outfile << "AMUSEMENT PARK RIDE LIST:" << endl;
+                        myPark->printToFile(outfile);
+                        outfile.close();
                         break;
                     default:
                         break;
