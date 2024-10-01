@@ -114,6 +114,14 @@ void Cart::printCart() {
     cout << "\t\tROWS:\t\t" << this->getRows() << endl;
     cout << "\t\tMOUNT TYPE:\t"<< this->getType() << endl;
     cout << "\t\tCOLOR:\t\t" << this->getColor() << endl;
+    cout << "\t\tROW OPERATIONAL STATUS:\n";
+    for (int i = 0; i < this->getRows(); i++) {
+        for (int j = 0; j < this->getRowSize(); j++) {
+            if (this->isRowOperational(i)) cout << "\033[42m  \033[0m "; // If row is operational, print (RowSize) green squares
+            else cout << "\033[41m  \033[0m "; // If row is NOT operational, print (RowSize) red squares
+        }
+        cout << endl;
+    }
 }
 
 /** printCartToFile(ofstream&) 
@@ -125,4 +133,12 @@ void Cart::printCartToFile(ofstream& outfile) {
     outfile << "\t\tROWS:\t\t" << this->getRows() << endl;
     outfile << "\t\tMOUNT TYPE:\t"<< this->getType() << endl;
     outfile << "\t\tCOLOR:\t\t" << this->getColor() << endl;
+    outfile << "\t\tROW OPERATIONAL STATUS:\n";
+    for (int i = 0; i < this->getRows(); i++) {
+        for (int j = 0; j < this->getRowSize(); j++) { // Colored squares not supported for printing to a raw text file
+            if (this->isRowOperational(i)) outfile << "T "; // If row is operational, print (RowSize) T's
+            else outfile << "F "; // If row is NOT operational, print (RowSize) F's
+        }
+        outfile << endl;
+    }
 }
