@@ -62,16 +62,16 @@ void Park::setSize(int size) { this->size = size; };
  * @param bool true to size up, false to size down
  */
 void Park::arrSizeModify(bool up) {
-    cout << "Modifying array size:\t";
-    if (up) cout << "size up";
-    else cout << "size down";
-    cout << endl;
-    cout << "Size before: " << this->getSize() << endl;
+    // cout << "Modifying array size:\t";
+    // if (up) cout << "size up";
+    // else cout << "size down";
+    // cout << endl;
+    // cout << "Size before: " << this->getSize() << endl;
     
     if (up) setSize(this->getSize() * 2);
     else setSize(this->getSize() / 2);
 
-    cout << "Size after: " << this->getSize() << endl;
+    // cout << "Size after: " << this->getSize() << endl;
 
     Ride** newArr = new Ride*[this->size];
     for (int i = 0; i < this->rideCount; i++) {
