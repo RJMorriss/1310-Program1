@@ -66,9 +66,9 @@ void Cart::updateOperationalArr(int newRows) {
     for (int i = 0; i < newRows; i++) {
         if (i < this->rows) newArr[i] = this->rowOperationArr[i];
         else newArr[i] = true;
-        delete [] this->rowOperationArr;
-        this->rowOperationArr = newArr;
     }
+    delete [] this->rowOperationArr;
+    this->rowOperationArr = newArr;
 }
 
 // GETTERS:
