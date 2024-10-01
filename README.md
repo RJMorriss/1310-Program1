@@ -90,6 +90,9 @@ This will represent the Amusement Park itself, all of the parks rides will be st
             - Calls the printRide member function on each ride
     - void printRides()
         - Loops through the rideArr and calls the printRide() member function on each Ride
+    - void printToFile(ofstream&)
+        - Prints all information about all rides in the Ride array to a file at the given filestream
+        - Parameter is the output filestream to the destination file passed by reference
 
 ### Data Class (Ride Class)
 This class will represents a ride, the ride will contain a series of information about themselves describing a variety of attributes
@@ -150,6 +153,9 @@ This class will represents a ride, the ride will contain a series of information
     - void printRide()
         - Prints a formatted description of the member variables of the Ride object to the console
         - Calls the printCart member function of its Cart object
+    - void printRideToFile(ofstream&)
+        - Prints all information about the ride and it's cart to the output file at the given filestream
+        - Parameter is the output filestream to the destination file passed by reference
 
 ### Other Class (Cart Class)
 This class will store information about a passenger cart for a specific ride
@@ -224,3 +230,6 @@ This class will store information about a passenger cart for a specific ride
         - Returns the maximum capacity of the Cart based on row size * number of operational rows
     - void printCart()
         - Prints a formatted description of the member variables of the Cart object to the console
+    - void printCartToFile(ofstream&)
+        - prints all information about the cart to a file at the given filestream
+        - Parameter is the output filestream to the destination file passed by reference
