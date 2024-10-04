@@ -5,10 +5,6 @@
     Purpose: Test functionality of the Park, Ride, and Cart classes (not to be used a functional program driver)
 */
 
-/** TODO:
- * Format outputs to be visually appealing
- * Comment the driver for readability
- */
 #include "Park.h"
 
 int main() {
@@ -92,7 +88,7 @@ int main() {
                     default: // 1.0 CANCEL
                         break;
                 }
-                choice = 0;
+                choice = 0; // Normalize choice variable to ensure the program does not end prematurely, used anywhere 5 can potentially be selected as a valid input
                 break;
             case 2: // 2. REMOVE RIDE
                 cout << "\n\nWhich Ride should be Removed:" << endl;
@@ -126,7 +122,7 @@ int main() {
                 }
                 if (choice == 0) break;
                 modify = myPark->getRide(choice - 1);
-                while(choice != 0) {
+                while(choice != 0) { // Once a ride is selected the editor will be continuously looped through until exited, this is to make editing multiple attributes much quicker
                     cout << "\nCURRENT RIDE ATTRIBUTES:" << endl;
                     modify->printRide();
                     cout << "\nWhich attribute do you want to change:" << endl;
