@@ -179,7 +179,6 @@ int main() {
                             for (int i = 0; i < modify->getCart()->getRows(); i++) { // Loops through the cart rowOperations array, checks the value of the of the current row, and prints status accordingly
                                 cout << "\t" << i + 1 << ".\t";
                                 for (int j = 0; j < modify->getCart()->getRowSize(); j++) {
-                                    // cout << char(177 + (42 * (modify->getCart()->isRowOperational(i)))) << " ";
                                     if (modify->getCart()->isRowOperational(i)) cout << "\033[42m  \033[0m ";
                                     else cout << "\033[41m  \033[0m ";
                                     
