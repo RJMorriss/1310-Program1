@@ -37,8 +37,9 @@ class Park {
         void addRide(string, int, string, int, int, string, string);
         void removeRide(int);
 
-        /**
-         * Overloaded << operator, called on an output stream to automatically print the informaiton about every ride in the park
+        /** friend ostream& operator(ostream&, const Park&)
+         * Overload "<<" operator
+         * Outputs the information about all rides in the rideArr to the referenced output stream
          */
         friend ostream& operator<<(ostream& output, const Park& park) {
             for (int i = 0; i < park.rideCount; i++) {

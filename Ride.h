@@ -36,6 +36,10 @@ class Ride {
         void setType(string);
         void setCart(Cart*);
 
+        /** friend ostream& operator(ostream&, const Ride&)
+         * Overload "<<" operator
+         * Outputs the information about the ride and its cart to the referenced output stream
+         */
         friend ostream& operator<<(ostream& output, const Ride& ride) {
             output << "YEAR:\t\t" << ride.year << endl;
             output << "NAME:\t\t" << ride.name << endl;
