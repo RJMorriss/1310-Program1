@@ -73,30 +73,3 @@ void Ride::setCap() { this->capacity = this->cart->getCurrentCapacity(); }; // R
 void Ride::setYear(int year) { this->year = year; };
 void Ride::setType(string type) { this->type = type; };
 void Ride::setCart(Cart* cart) { this->cart = cart; };
-
-// PRINTER:
-
-/** printRide()
- * Prints all information about the ride and it's cart 
- */
-void Ride::printRide() {
-    cout << "NAME:\t\t" << this->getName() << endl;
-    cout << "YEAR:\t\t" << this->getYear() << endl;
-    cout << "CAPACITY:\t" << this->getCap() << endl;
-    cout << "TYPE:\t\t" << this->getType() << endl;
-    cout << "CART:" << endl;
-    this->cart->printCart();
-}
-
-/** printRideToFile(ofstream&)
- * Prints all information about the ride and it's cart to the output file at the given filestream
- * @param ofstream the output file stream passed by reference
- */
-void Ride::printRideToFile(ofstream& outfile) {
-    outfile << "NAME:\t\t" << this->getName() << endl;
-    outfile << "YEAR:\t\t" << this->getYear() << endl;
-    outfile << "CAPACITY:\t" << this->getCap() << endl;
-    outfile << "TYPE:\t\t" << this->getType() << endl;
-    outfile << "CART:" << endl;
-    this->cart->printCartToFile(outfile);
-}
