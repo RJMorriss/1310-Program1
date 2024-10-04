@@ -176,7 +176,7 @@ int main() {
                             break;
                         case 8: // 3.8 ROW OPERATIONS EDITOR
                             cout << "\nCURRENT ROW STATUS:" << endl;
-                            for (int i = 0; i < modify->getCart()->getRows(); i++) {
+                            for (int i = 0; i < modify->getCart()->getRows(); i++) { // Loops through the cart rowOperations array, checks the value of the of the current row, and prints status accordingly
                                 cout << "\t" << i + 1 << ".\t";
                                 for (int j = 0; j < modify->getCart()->getRowSize(); j++) {
                                     // cout << char(177 + (42 * (modify->getCart()->isRowOperational(i)))) << " ";
