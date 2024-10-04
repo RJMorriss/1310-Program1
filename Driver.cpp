@@ -1,205 +1,281 @@
-
 /*
-#include<iostream>
-#include"Park.h"
-#include"Cart.h"
-#include"Ride.h"
+    Author: Robert J. Morriss
+    Date: 9/16/24
+    File: testDriver.cpp
+    Purpose: Test functionality of the Park, Ride, and Cart classes (not to be used a functional program driver)
+*/
 
-using namespace std;
+/** TODO:
+ * Format outputs to be visually appealing
+ * Comment the driver for readability
+ */
+#include "Park.h"
 
-int main()
-{
-    int switchChoice;
-    Park * myPark = new Park();
+int main() {
+    Park* myPark = new Park();
+    Ride* modify;
+    ofstream outfile;
+    ifstream f; // Used to test if a filename already exists when printing to a file
+    string name,
+           type,
+           color,
+           mountType,
+           filename;
+    char input;
+    int choice,
+        year,
+        rowSize,
+        rows;
 
-    string rideName, rideType, rideCart, rideColor;
-    int rideYear, numRows, rowSize;
-    int sub1Choice, printChoice, sub2Choice, sub3Choice, sub4Choice, modChoice;
+    cout << " _       __     __                             ______         __  __                    ____             __      __" << endl;
+    cout << "| |     / /__  / /________  ____ ___  ___     /_  __/___      \\ \\/ /___  __  _______   / __ \\____ ______/ /__   / /" << endl;
+    cout << "| | /| / / _ \\/ / ___/ __ \\/ __ `__ \\/ _ \\     / / / __ \\      \\  / __ \\/ / / / ___/  / /_/ / __ `/ ___/ //_/  / / " << endl;
+    cout << "| |/ |/ /  __/ / /__/ /_/ / / / / / /  __/    / / / /_/ /      / / /_/ / /_/ / /     / ____/ /_/ / /  / ,<    /_/  " << endl;
+    cout << "|__/|__/\\___/_/\\___/\\____/_/ /_/ /_/\\___/    /_/  \\____/      /_/\\____/\\__,_/_/     /_/    \\__,_/_/  /_/|_|  (_)   " << endl;
 
-    do{
-        cout << "************************************************" << endl;
-        cout << "AMUSEMENT PARK MENU" << endl;
-        cout << "What would you like to do? (Enter 1-5)" << endl;
-        cout << "Option 1: Print Rides" << endl;
-        cout << "Option 2: Delete Rides" << endl;
-        cout << "Option 3: Add Rides" << endl;
-        cout << "Option 4: Edit Rides" << endl;
-        cout << "Option 5: End Program" << endl;
-
-        switch(switchChoice)
-        {
-            case 1:
-                cout << "Print Submenu" << endl;
-                cout << "Option 1: Print One\nOption 2: Print All" << endl;
-                cin >> sub1Choice;
-                while(sub1Choice<0 || sub1Choice>2)
-                {
-                    cout << "Please Enter a Valid Input" << endl;
-                    cin >> sub1Choice;
+    while (choice != 5) {
+        cout << "\n\nPark Main Menu:" << endl;
+        cout << "\t1. Add Ride\n\t2. Remove Ride\n\t3. Edit Ride\n\t4. Print Rides\n\t5. Exit Program\nCHOICE: ";
+        cin >> choice;
+        while (choice < 1 || choice > 5) {
+            cout << "invalid entry, please enter a number between 1 and 5" << endl;
+            cout << "CHOICE: ";
+            cin >> choice;
+        }
+        switch (choice) {
+            case 1: // 1. ADD RIDE
+                cout << "\n\nAdd Menu:" << endl;
+                cout << "\t1. Blank Ride\n\t2. Ride w/out Cart\n\t3. Full Ride\n\t0. Cancel\nCHOICE: ";
+                cin >> choice;
+                while (choice < 0 || choice > 3) {
+                    cout << "\n\ninvalid entry, please enter a number between 0 and 3" << endl;
+                    cout << "CHOICE: ";
+                    cin >> choice;
                 }
-                switch(sub1Choice)
-                {
-                    //print Rides
-                    case 1:
-                        cout << "WHICH RIDE DO YOU WANT TO PRINT?" << endl;
-                        for(int i=0; i<myPark->getRideCount(); i++)
-                        {
-                            cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
-                        }
-                        cin >> printChoice;
-                        while(printChoice<0 || printChoice>myPark->getRideCount())
-                        {
-                            cout << "Please Enter Valid Input(1-" << myPark->getRideCount() << ")\nChoice: ";
-                            cin >> printChoice;
-                        }
-                        myPark->getRide(printChoice-1)->printRide();
+                switch (choice) {
+                    case 1: // 1.1 ADD BLANK RIDE
+                        myPark->addRide();
                         break;
-                    case 2:
+                    case 2: // 1.2 CUSTOM RIDE, DEFUALT CART
+                        cin.ignore();
+                        cout << "\nNAME:\t\t";
+                        getline(cin, name);
+                        cout << "\nYEAR:\t\t";
+                        cin >> year;
+                        cin.ignore();
+                        cout << "\nTYPE:\t\t";
+                        getline(cin, type);
+
+                        myPark->addRide(name, year, type);
+                        break;
+                    case 3: // 1.3 CUSTROM RIDE, CUSTOM CART
+                        cin.ignore();
+                        cout << "\nNAME:\t\t";
+                        getline(cin, name);
+                        cout << "\nYEAR:\t\t";
+                        cin >> year;
+                        cin.ignore();
+                        cout << "\nTYPE:\t\t";
+                        getline(cin, type);
+                        cout << "\nROW SIZE:\t";
+                        cin >> rowSize;
+                        cout << "\nROWS:\t\t";
+                        cin >> rows;
+                        cin.ignore();
+                        cout << "\nMOUNT TYPE:\t";
+                        getline(cin, mountType);
+                        cout << "\nCOLOR:\t\t";
+                        getline(cin, color);
+
+                        myPark->addRide(name, year, type, rowSize, rows, mountType, color);
+                        break;
+                    default: // 1.0 CANCEL
+                        break;
+                }
+                choice = 0;
+                break;
+            case 2: // 2. REMOVE RIDE
+                cout << "\n\nWhich Ride should be Removed:" << endl;
+                for (int i = 0; i < myPark->getRideCount(); i++) {
+                    cout << "\t" << i + 1 << ". " << myPark->getRide(i)->getName() << endl;
+                }
+                cout << "\t0. Cancel" << endl;
+                cout << "CHOICE: ";
+                cin >> choice;
+                while (choice < 0 || choice > myPark->getRideCount()) {
+                    cout << "invalid choice. please enter a number between 0 and " << myPark->getRideCount() << "." << endl;
+                    cout << "CHOICE: ";
+                    cin >> choice;
+                }
+                if (choice == 0) break;
+                myPark->removeRide(choice - 1);
+                choice = 0;
+                break;
+            case 3: // 3. EDIT RIDE
+                cout << "\n\nWhich Ride should be Modified:" << endl;
+                for (int i = 0; i < myPark->getRideCount(); i++) {
+                    cout << "\t" << i + 1 << ". " << myPark->getRide(i)->getName() << endl;
+                }
+                cout << "\t0. Cancel" << endl;
+                cout << "CHOICE: ";
+                cin >> choice;
+                while (choice < 0 || choice > myPark->getRideCount()) {
+                    cout << "invalid choice. please enter a number between 0 and " << myPark->getRideCount() << endl;
+                    cout << "CHOICE: ";
+                    cin >> choice;
+                }
+                if (choice == 0) break;
+                modify = myPark->getRide(choice - 1);
+                while(choice != 0) {
+                    cout << "\nCURRENT RIDE ATTRIBUTES:" << endl;
+                    modify->printRide();
+                    cout << "\nWhich attribute do you want to change:" << endl;
+                    cout << "\tRide attributes:" << endl;
+                    cout << "\t\t1. Ride Name\n\t\t2. Ride Year\n\t\t3. Ride Type\n";
+                    cout << "\tCart attributes:" << endl;
+                    cout << "\t\t4. Row Size\n\t\t5. Cart Rows\n\t\t6. Mount Type\n\t\t7. Cart Color\n\t\t8. Row Status\n";
+                    cout << "\t\t0. Exit Editor\nCHOICE: ";
+                    cin >> choice;
+                    while (choice < 0 || choice > 8) {
+                        cout << "invalid choice. please enter a number between 0 and 8" << endl;
+                        cout << "CHOICE: ";
+                        cin >> choice;
+                    }
+                    cin.ignore();
+                    switch (choice) {
+                        case 1: // 3.1 CHANGE NAME
+                            cout << "\nNEW NAME:\t";
+                            getline(cin, name);
+                            modify->setName(name);
+                            break;
+                        case 2: // 3.2 CHANGE YEAR
+                            cout << "\nNEW YEAR:\t";
+                            cin >> year;
+                            modify->setYear(year);
+                            break;
+                        case 3: // 3.3 CHANGE RIDE TYPE
+                            cout << "\nNEW TYPE:\t";
+                            getline(cin, type);
+                            modify->setType(type);
+                            break;
+                        case 4: // 3.4 CHANGE ROW SIZE
+                            cout << "\nNEW ROW SIZE:\t";
+                            cin >> rowSize;
+                            modify->getCart()->setRowSize(rowSize);
+                            break;
+                        case 5: // 3.5 CHANGE ROW COUNT
+                            cout << "\nNEW ROWS:\t";
+                            cin >> rows;
+                            modify->getCart()->setRows(rows);
+                            break;
+                        case 6: // 3.6 CHANGE CART MOUNT TYPE
+                            cout << "\nNEW MOUNT:\t";
+                            getline(cin, mountType);
+                            modify->getCart()->setType(mountType);
+                            break;
+                        case 7: // 3.7 CHANGE COLOR
+                            cout << "\nNEW COLOR:\t";
+                            getline(cin, color);
+                            modify->getCart()->setColor(color);
+                            break;
+                        case 8: // 3.8 ROW OPERATIONS EDITOR
+                            cout << "\nCURRENT ROW STATUS:" << endl;
+                            for (int i = 0; i < modify->getCart()->getRows(); i++) {
+                                cout << "\t" << i + 1 << ".\t";
+                                for (int j = 0; j < modify->getCart()->getRowSize(); j++) {
+                                    // cout << char(177 + (42 * (modify->getCart()->isRowOperational(i)))) << " ";
+                                    if (modify->getCart()->isRowOperational(i)) cout << "\033[42m  \033[0m ";
+                                    else cout << "\033[41m  \033[0m ";
+                                    
+                                }
+                                cout << endl;
+                            }
+                            cout << "\t0. CANCEL" << endl;
+                            cout << "\nWhich Row do you want to modify?\nCHOICE: ";
+                            cin >> choice;
+                            while (choice < 0 || choice > modify->getCart()->getRows()) {
+                                cout << "invalid choice. please enter a number between 0 and " << modify->getCart()->getRows() << "." << endl;
+                                cout << "CHOICE: ";
+                                cin >> choice;
+                            }
+                            if (choice == 0) break;
+                            cout << "\nIs this row Operational? (y/n):  ";
+                            cin >> input;
+                            while (toupper(input) != 'Y' && toupper(input) != 'N') {
+                                cout << "invalid input. please enter a \'y\' or \'n\'\nCHOICE: ";
+                                cin >> input;
+                            }
+                            modify->getCart()->setRowStatus(choice - 1, toupper(input) == 'Y');
+                            modify->setCap();
+                            break;
+                        default: // 3.0 CANCEL
+                            break;
+                    }
+                }
+                break;
+            case 4: // 4. PRINT RIDE(S)
+                cout << "\n\nPrint Menu" << endl;
+                cout << "\t1. Print One Ride\n\t2. Print All Rides\n\t3. Print To File\n\t0. Cancel\nCHOICE: ";
+                cin >> choice;
+                while (choice < 0 || choice > 3) {
+                    cout << "invalid entry, please enter a number between 0 and 3" << endl;
+                    cin >> choice;
+                }
+
+                switch (choice) {
+                    case 1: // 4.1 PRINT ONE RIDE
+                        cout << "\n\nWhich Ride should be Printed:" << endl;
+                        for (int i = 0; i < myPark->getRideCount(); i++) {
+                            cout << "\t" << i + 1 << ". " << myPark->getRide(i)->getName() << endl;
+                        }
+                        cout << "\t0. Cancel" << endl;
+                        cout << "CHOICE: ";
+                        cin >> choice;
+                        while (choice < 0 || choice > myPark->getRideCount()) {
+                            cout << "invalid choice. please enter a number between 0 and " << myPark->getRideCount() << "." << endl;
+                            cout << "CHOICE: ";
+                            cin >> choice;
+                        }
+                        if (choice == 0) break;
+                        cout << string(58, '*') << endl;
+                        myPark->getRide(choice - 1)->printRide();
+                        break;
+                    case 2: // 4.2 PRINT ALL RIDES
                         myPark->printRides();
                         break;
+                    case 3: // 4.3 PRINT TO FILE
+                        cout << "\n\nWhat filename should the park be printed to? (example.txt)" << endl;
+                        cin.ignore();
+                        getline(cin, filename);
+                        f.open(filename);
+                        if (f.good()) {
+                            cout << "\nFilename \"" << filename << "\" already exists, continuing will override the current file.\n\n Do you want to continue? (y/n): ";
+                            cin >> input;
+                            while (toupper(input) != 'Y' && toupper(input) != 'N') {
+                                cout << "invalid input. please enter a \'y\' or \'n\'\nCHOICE: ";
+                                cin >> input;
+                            }
+                            if (toupper(input) == 'N') break;
+                        }
+                        f.close();
+                        outfile.open(filename);
+                        outfile << "AMUSEMENT PARK RIDE LIST:" << endl;
+                        myPark->printToFile(outfile);
+                        outfile.close();
+                        break;
+                    default:
+                        break;
                 }
+                choice = 0;
                 break;
-
-            // Ride Delete
-            case 2:
-                cout << "WHICH RIDE WOULD YOU LIKE TO REMOVE?";
-                for(int i=0; i<myPark->getRideCount(); i++)
-                {
-                    cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
-                }
-                cout << "0.\tCancel" << endl;
-                cin >> sub2Choice;
-                while(sub2Choice<0 || sub2Choice>myPark->getRideCount())
-                {
-                    cout << "Please Enter Valid Input(1-" << myPark->getRideCount() << ")\nChoice: ";
-                    cin >> sub2Choice;
-                }
-                cout << "Ride " << myPark->getRide(sub2Choice)->getName() << " was successfully deleted" << endl;
-                myPark->removeRide(sub2Choice-1);
+            default: // 5. EXIT
                 break;
-            //Add rides
-            case 3:
-                cout << "\n*****ADD A RIDE*****\n";
-                cout << "1.\tAdd Ride Without A Cart\n2.\tAdd A Full Ride\n0.\tCancel\n  ENTER YOUR CHOICE: ";
-                cin >> sub3Choice;
-                while (sub3Choice < 0 || sub3Choice > 2) 
-                {
-                    cout << "invalid entry, please enter a number between 0 and 3" << endl;
-                    cin >> sub3Choice;
-                }
-                if (sub3Choice == 1){
-                    cout << "******Good Choice*******";
-                    cin.ignore();
-                    cout << "Ride Name: \t\t";
-                    getline(cin, rideName);
-                    cin.ignore();
-                    cout << "Ride Year: \t\t";
-                    cin >> rideYear;
-                    cin.ignore();
-                    cout << "Ride Type: \t\t";
-                    getline(cin, rideType);
-
-                    myPark->addRide(rideName, rideYear, rideType);
-                    cout << "*****RIDE SUCCESSFULLY CREATED*****" << endl;
-                }
-                else if (sub3Choice == 2){
-                    cout << "******Good Choice*******";
-                    cin.ignore();
-                    cout << "Ride Name: \t\t";
-                    getline(cin, rideName);
-                    cin.ignore();
-                    cout << "Ride Year: \t\t";
-                    cin >> rideYear;
-                    cin.ignore();
-                    cout << "Ride Type: \t\t";
-                    getline(cin, rideType);
-                    cin.ignore();
-                    cout << "Cart Type: \t\t";
-                    getline(cin, rideType);
-                    cout << "How Long Is A Row of Seats: \t\t";
-                    cin >> rowSize;
-                    cout << "How Many Rows In a Cart?: \t\t";
-                    cin >> numRows;
-                    cin.ignore();
-                    cout << "Cart Color: \t\t";
-                    getline(cin, rideColor);
-
-                    myPark->addRide(rideName, rideYear, rideType, rowSize, numRows, rideCart, rideColor);
-                    cout << "*****RIDE SUCCESSFULLY CREATED*****" << endl;
-
-                }
-
-                break;
-
-            //Edit Rides
-            case 4:
-                cout << "*****WHICH RIDE WOULD YOU LIKE TO MODIFY?*****" << endl;
-                for(int i=0; i<myPark->getRideCount(); i++)
-                {
-                    cout << i+1 << ".\t" << myPark->getRide(i)->getName() << endl;
-                }
-                cout << "0.\tCancel" << endl;
-
-                cin >> sub4Choice;
-                while(sub4Choice<0 || sub4Choice>myPark->getRideCount())
-                {
-                    cout << "Please Enter Valid Input(1-" << myPark->getRideCount() << ")\nChoice: ";
-                    cin >> sub4Choice;
-                }
-                //Add function to test if ride has cart. If ride has cart give user option to modify just cart, just ride, or both.
-                cout << "WHICH PART OF THE RIDE WOULD YOU LIKE TO MODIFY?" << endl << endl;
-                cout << "1.\t\tModify Name\n2.\t\tModfy Year\n3.\t\tModify Type\n4.\t\tModify Cart Type\n";
-                cout << "5.\t\tModify Color\n6.\t\tModify Number of Rows\n7.\t\tModify Row Size\n0.\t\tCancel" << endl;
-                cin >> modChoice;
-                while(modChoice<0 || modChoice>7)
-                {
-                    cout << "Please Enter Valid Input (0-7)" << endl;
-                    cin >> modChoice;
-                }
-                
-                switch(modChoice)
-                {
-                    case 1:
-                        cout << "Please Enter the New Name: ";
-                        getline(cin, rideName);
-                        modify->setName(rideName);
-                        break;
-                    case 2:
-                        cout << "Please Enter the New Year: ";
-                        cin >> rideYear;
-                        modify->setYear(rideYear);
-                        break;
-                    case 3:
-                        cout << "Please Enter the New Type: ";
-                        getline(cin, rideType);
-                        modify->setType(rideType);
-                        break;
-                    case 4:
-                        cout << "Please Enter the New Cart Type: ";
-                        getline(cin, rideCart);
-                        modify->getCart()->setType(rideCart);
-                        break;
-                    case 5:
-                        cout << "Please Enter the New Color: ";
-                        getline(cin, rideColor);
-                        modify->getCart()->setColor(rideColor);
-                        break;
-                    case 6:
-                        cout << "Please Enter the New Number of Rows: ";
-                        cin >> numRows;
-                        modify->getCart()->setRows(numRows);
-                        break;
-                    case 7:
-                        cout << "Please Enter the New Size of the Rows: ";
-                        cin >> rowSize;
-                        modify->getCart()->setRowSize(rowSize);
-                        break;
-                }
-                break;
-        
         }
-    }while(switchChoice != 5);   
-    cout << "\n\n*****GOODBYE! :) *****\n\n";
+    }
+
+    cout << "\n\n********** GOODBYE! **********\n\n";
+    
+    delete myPark;
+
     return 0;
 }
-*/
