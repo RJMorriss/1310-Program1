@@ -40,6 +40,10 @@ class Cart {
         void setColor(string);
         void setRowStatus(int, bool);
 
+        /** friend ostream& operator(ostream&, const Cart&)
+         * Overload "<<" operator
+         * Outputs the information about the cart to the referenced output stream
+         */
         friend ostream& operator<<(ostream& output, const Cart& cart) {
             output << "\t\tROW SIZE:\t" << cart.rowSize << endl;
             output << "\t\tROWS:\t\t" << cart.rows << endl;

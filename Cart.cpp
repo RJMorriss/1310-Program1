@@ -9,7 +9,7 @@
 
 // CONSTRUCTORS:
 
-/**
+/** Cart()
  * Default constructor for the Cart object
  * Initialzes all attributes of the object to their default
  */
@@ -22,7 +22,7 @@ Cart::Cart() {
     this->rowOperationArr[0] = true;
 }
 
-/**
+/** Cart(int, int, string, string)
  * Overloaded constructor for the Cart object
  * Initializes all atributes based on the parameters
  * @param int rowSize - Amount of seats in each row
@@ -41,7 +41,7 @@ Cart::Cart(int rowSize, int rows, string mountingType, string color) {
 
 // DESTRUCTOR:
 
-/**
+/** ~Cart()
  * Destructor for the Cart object
  * Deletes the dynamic boolean array
  */
@@ -49,7 +49,7 @@ Cart::~Cart(){ delete [] this->rowOperationArr; }
 
 // HELPERS:
 
-/**
+/** updateOperationalArr(int)
  * Called by the setRows function
  * 
  * dynamically allocate a new boolean area with the given size
@@ -77,13 +77,13 @@ int Cart::getRowSize() { return this->rowSize; };
 int Cart::getRows() { return this->rows; };
 string Cart::getType() { return this->mountType; };
 string Cart::getColor() { return this-> color; };
-/**
+/** isRowOperational(int)
  * Determines if a specified row of the Cart is operational
  * @param int Index of the row in the rowOperationArr to check
  * @return If the row is operational
  */
 bool Cart::isRowOperational(int index) { return this->rowOperationArr[index]; };
-/**
+/** getCurrentCapacity()
  * Multiplies the number of seats in a row by the number of operational rows
  * @return The operational capacity of the Cart
  */
