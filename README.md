@@ -88,11 +88,9 @@ This will represent the Amusement Park itself, all of the parks rides will be st
         - Loops through all rides in the rideArr
             - Prints a numerical identifier
             - Calls the printRide member function on each ride
-    - void printRides()
-        - Loops through the rideArr and calls the printRide() member function on each Ride
-    - void printToFile(ofstream&)
-        - Prints all information about all rides in the Ride array to a file at the given filestream
-        - Parameter is the output filestream to the destination file passed by reference
+    - friend ostream& operator(ostream&, const Park&)
+        - Overload "<<" operator
+            - Outputs the information about all rides in the rideArr to the referenced output stream
 
 ### Data Class (Ride Class)
 This class will represents a ride, the ride will contain a series of information about themselves describing a variety of attributes
@@ -150,12 +148,9 @@ This class will represents a ride, the ride will contain a series of information
     - void printRide() 
         - Prints all the rides attributes in a neat, readable, format to the console
         - Calls the printCart member function on its Cart* attribute
-    - void printRide()
-        - Prints a formatted description of the member variables of the Ride object to the console
-        - Calls the printCart member function of its Cart object
-    - void printRideToFile(ofstream&)
-        - Prints all information about the ride and it's cart to the output file at the given filestream
-        - Parameter is the output filestream to the destination file passed by reference
+    - friend ostream& operator(ostream&, const Ride&)
+        - Overload "<<" operator
+            - Outputs the information about the ride and its cart to the referenced output stream
 
 ### Other Class (Cart Class)
 This class will store information about a passenger cart for a specific ride
@@ -228,8 +223,6 @@ This class will store information about a passenger cart for a specific ride
         - Sets the operation status of a row at a given index to the given value
     - int getCurrentCapacity()
         - Returns the maximum capacity of the Cart based on row size * number of operational rows
-    - void printCart()
-        - Prints a formatted description of the member variables of the Cart object to the console
-    - void printCartToFile(ofstream&)
-        - prints all information about the cart to a file at the given filestream
-        - Parameter is the output filestream to the destination file passed by reference
+    - friend ostream& operator(ostream&, const Cart&)
+        - Overload "<<" operator
+            - Outputs the information about the cart to the referenced output stream

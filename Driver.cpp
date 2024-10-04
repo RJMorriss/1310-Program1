@@ -124,7 +124,7 @@ int main() {
                 modify = myPark->getRide(choice - 1);
                 while(choice != 0) { // Once a ride is selected the editor will be continuously looped through until exited, this is to make editing multiple attributes much quicker
                     cout << "\nCURRENT RIDE ATTRIBUTES:" << endl;
-                    modify->printRide();
+                    cout << *modify;
                     cout << "\nWhich attribute do you want to change:" << endl;
                     cout << "\tRide attributes:" << endl;
                     cout << "\t\t1. Ride Name\n\t\t2. Ride Year\n\t\t3. Ride Type\n";
@@ -179,7 +179,6 @@ int main() {
                             for (int i = 0; i < modify->getCart()->getRows(); i++) { // Loops through the cart rowOperations array, checks the value of the of the current row, and prints status accordingly
                                 cout << "\t" << i + 1 << ".\t";
                                 for (int j = 0; j < modify->getCart()->getRowSize(); j++) {
-                                    // cout << char(177 + (42 * (modify->getCart()->isRowOperational(i)))) << " ";
                                     if (modify->getCart()->isRowOperational(i)) cout << "\033[42m  \033[0m ";
                                     else cout << "\033[41m  \033[0m ";
                                     
@@ -234,10 +233,10 @@ int main() {
                         }
                         if (choice == 0) break;
                         cout << string(58, '*') << endl;
-                        myPark->getRide(choice - 1)->printRide();
+                        cout << *myPark->getRide(choice - 1);
                         break;
                     case 2: // 4.2 PRINT ALL RIDES
-                        myPark->printRides();
+                        cout << *myPark;
                         break;
                     case 3: // 4.3 PRINT TO FILE
                         cout << "\n\nWhat filename should the park be printed to? (example.txt)" << endl;
@@ -256,7 +255,7 @@ int main() {
                         f.close();
                         outfile.open(filename);
                         outfile << "AMUSEMENT PARK RIDE LIST:" << endl;
-                        myPark->printToFile(outfile);
+                        outfile << *myPark;
                         outfile.close();
                         break;
                     default:

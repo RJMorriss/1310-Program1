@@ -36,8 +36,18 @@ class Park {
         void addRide(string, int, string);
         void addRide(string, int, string, int, int, string, string);
         void removeRide(int);
-        void printRides();
-        void printToFile(ofstream&);
+
+        /**
+         * Overloaded << operator, called on an output stream to automatically print the informaiton about every ride in the park
+         */
+        friend ostream& operator<<(ostream& output, const Park& park) {
+            for (int i = 0; i < park.rideCount; i++) {
+                output << string(25, '*') << " RIDE " << i + 1 << " " << string(25, '*') << endl;
+                output << *park.rideArr[i];
+            }
+
+            return output;
+        }
 };
 
 #endif

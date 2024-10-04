@@ -142,26 +142,3 @@ void Park::removeRide(int index) {
         }
     }
 }
-
-// PRINTERS:
-
-/** printRides()
- * Prints all information about all rides in the Ride array
- */
-void Park::printRides() {
-    for (int i = 0; i < this->rideCount; i++) {
-        cout << string(25, '*') << " RIDE " << i + 1 << " " << string(25, '*') << endl;
-        this->rideArr[i]->printRide();
-    }
-}
-
-/** printToFile(ofstream&)
- * Prints all information about all rides in the Ride array to a file at the given filestream
- * @param ofstream the output file stream passed by reference
- */
-void Park::printToFile(ofstream& outfile) {
-    for (int i = 0; i < this->rideCount; i++) {
-        outfile << string(25, '*') << " RIDE " << i + 1 << " " << string(25, '*') << endl;
-        this->rideArr[i]->printRideToFile(outfile);
-    }
-}

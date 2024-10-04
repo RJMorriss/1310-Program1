@@ -35,8 +35,17 @@ class Ride {
         void setYear(int);
         void setType(string);
         void setCart(Cart*);
-        void printRide();
-        void printRideToFile(ofstream&);
+
+        friend ostream& operator<<(ostream& output, const Ride& ride) {
+            output << "YEAR:\t\t" << ride.year << endl;
+            output << "NAME:\t\t" << ride.name << endl;
+            output << "CAPACITY:\t" << ride.capacity << endl;
+            output << "TYPE:\t\t" << ride.type << endl;
+            output << "CART:" << endl;
+            output << *ride.cart;
+
+            return output;
+        }
 };
 
 

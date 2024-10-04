@@ -40,8 +40,22 @@ class Cart {
         void setColor(string);
         void setRowStatus(int, bool);
 
-        void printCart();
-        void printCartToFile(ofstream&);
+        friend ostream& operator<<(ostream& output, const Cart& cart) {
+            output << "\t\tROW SIZE:\t" << cart.rowSize << endl;
+            output << "\t\tROWS:\t\t" << cart.rows << endl;
+            output << "\t\tMOUNT TYPE:\t"<< cart.mountType << endl;
+            output << "\t\tCOLOR:\t\t" << cart.color << endl;
+            output << "\t\tROW OPERATIONAL STATUS:\n\t\t▓▓ = Active\n\t\t░░ = Inactive\n";
+            for (int i = 0; i < cart.rows; i++) {
+                output << "\t\t" << i + 1 << ".\t";
+                for (int j = 0; j < cart.rowSize; j++) { // Colored squares not supported for printing to a raw text file
+                    if (cart.rowOperationArr[i]) output << "▓▓ "; // If row is operational, print (RowSize) T's
+                    else output << "░░ "; // If row is NOT operational, print (RowSize) F's
+                }
+                output << endl;
+            }
+            return output;
+        }
 };
 
 #endif
