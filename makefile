@@ -1,10 +1,10 @@
 all				:	DRIVER
 
-DRIVER			:	testDriver.o Park.o Ride.o Cart.o
-					g++ -o Driver.exe testDriver.o Park.o Ride.o Cart.o
+DRIVER			:	Driver.o Park.o Ride.o Cart.o
+					g++ -o Driver.exe Driver.o Park.o Ride.o Cart.o
 
-testDriver.o	:	testDriver.cpp
-					g++ -I ./ -c testDriver.cpp
+Driver.o		:	Driver.cpp
+					g++ -I ./ -c Driver.cpp
 
 Park.o			:	Park.cpp Park.h
 					g++ -I ./ -c Park.cpp
@@ -16,7 +16,5 @@ Cart.o			:	Cart.cpp Cart.h
 					g++ -I ./ -c Cart.cpp
 
 clean			:	Driver.exe
-					rm *.o
-					del *.o
-					rm Driver.exe
-					del Driver.exe
+					rm *.o *.exe
+					del *.o *.exe
